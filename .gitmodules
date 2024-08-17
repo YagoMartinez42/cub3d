@@ -1,0 +1,6 @@
+[submodule "MLX42"]
+	path = MLX42
+	url = https://github.com/42-Fundacion-Telefonica/MLX42.git
+[submodule "libft"]
+	path = libft
+	url = https://github.com/blasdo/libft.git
