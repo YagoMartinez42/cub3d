@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:46:18 by samartin          #+#    #+#             */
-/*   Updated: 2024/08/19 14:32:16 by samartin         ###   ########.fr       */
+/*   Updated: 2024/08/21 13:47:30 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 #  define TEXH 128
 # endif
 # ifndef BPP
-#  define BPP sizeof(int32_t)
+#  define BPP 4
 # endif
 
 /**
@@ -42,7 +42,7 @@
  *  N-S-E-W for player pressence and orientation, whitespace for outer,
  *  non-walkable empty space.
  */
-typedef	struct s_map
+typedef struct s_map
 {
 	size_t	map_size[2];
 	int32_t	floor_color;

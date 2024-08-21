@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:03:15 by samartin          #+#    #+#             */
-/*   Updated: 2024/08/20 19:17:15 by samartin         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:02:54 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*cb_skip_ws(char *line)
 	return (line);
 }
 
-char	**cb_populate_kw()
+char	**cb_populate_kw(void)
 {
 	char	**kwords;
 
@@ -59,6 +59,19 @@ char	**cb_populate_kw()
 	return (kwords);
 }
 
+void	cd_free2d(char **array_of_str)
+{
+	int	i;
+
+	i = 0;
+	while (array_of_str[i])
+	{
+		free(array_of_str[i]);
+		i++;
+	}
+	free(array_of_str);
+}
+
 uint8_t	cb_clear_header(char **header, char **kwords)
 {
 	int	i;
@@ -70,17 +83,11 @@ uint8_t	cb_clear_header(char **header, char **kwords)
 			free(header[i]);
 		i++;
 	}
-	i = 0;
-	while (kwords[i])
-	{
-		free(kwords[i]);
-		i++;
-	}
-	free(kwords);
+	cb_free2d(kwords);
 	return (255);
 }
 
-uint8_t cb_addline(t_map *map, char *line, char **header, uint8_t line_flags)
+uint8_t	cb_addline(t_map *map, char *line, char **header, uint8_t line_flags)
 {
 	char	**kwords;
 	int		i;
@@ -90,14 +97,14 @@ uint8_t cb_addline(t_map *map, char *line, char **header, uint8_t line_flags)
 	line = cb_skip_ws(line);
 	while (kwords[i])
 	{
-		if (ft_strncmp(line, kwords[i], 3) || ((ft_strncmp(line, kwords[i], 2)
+		if (ft_strncmp(line, kwords[i], 3) || ((ft_strncmp(line, kwords[i], 2) \
 			&& i > 3)))
 		{
 			if ((1 << i) & line_flags)
 				return (cb_clear_header(header, kwords));
 			line = cb_skip_ws(line + 2);
 			header[i] = ft_strdup(line);
-				return (1 << i);
+			return (1 << i);
 		}
 		i++;
 	}
@@ -119,7 +126,7 @@ t_map	*cb_load_textures(t_map *map, char **header)
 	{
 		texture = mlx_load_png(header[i]);
 		if (!texture)
-			return(cb_errors(3), NULL);
+			return (cb_errors(3), NULL);
 		node = ft_lstnew(texture);
 		if (!node)
 			cb_fatal_errors(1);
@@ -135,18 +142,17 @@ t_map	*cb_load_textures(t_map *map, char **header)
 
 t_map	*cb_assign_colors(t_map *map, char **header)
 {
-	char	*rgbc;
-	int		rgbi[4];
+	char	**rgbs;
 	int		i;
 
-	rgbc = ft_split(header[4], ",");
-	i = 0;
-	while (i < 4)
-	{
-		//rgbi[i] = rgbc //WIP WIP WIP!
-		i++;
-	}
-	map->ceil_color = 
+	rgbs = ft_split(header[4], ",");
+	map->floor_color = ((ft_atoi(rgbs[0])) << 24 | ft_atoi(rgbs[1]) << 16 | \
+		ft_atoi(rgbs[2]) << 8 | ft_atoi(rgbs[3]));
+	cb_free2d(rgbs);
+	rgbs = ft_split(header[5], ",");
+	map->ceil_color = ((ft_atoi(rgbs[0])) << 24 | ft_atoi(rgbs[1]) << 16 | \
+		ft_atoi(rgbs[2]) << 8 | ft_atoi(rgbs[3]));
+	cb_free2d(rgbs);
 }
 
 t_map	*cb_read_header(int fd, t_map *map)
@@ -176,6 +182,47 @@ t_map	*cb_read_header(int fd, t_map *map)
 	return (map);
 }
 
+t_map *cb_map_list_to_matrix(t_map *map, t_list *map_as_list)
+{
+	int	i;
+
+	map->map_size[0] = 0;
+	map->map_size[1] = ft_lstsize(map_as_list);
+	map->map_matrix = malloc(i * sizeof(char *));
+	i = 0;
+	while (i < map->map_size[1])
+	{
+		map->map_matrix[i] = (map_as_list->content.str);
+		if (ft_strlen(map->map_matrix[i]) > map->map_size[0])
+			map->map_size[0] = ft_strlen(map->map_matrix[i]);
+		i++;
+	}
+}
+
+t_map	*cb_read_map(int fd, t_map *map)
+{
+	char	*line;
+	t_list	*map_as_list;
+	t_list	*node;
+
+	line = get_next_line(fd);
+	while (ft_strncmp(cb_skip_ws(line), "", 1))
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
+	while (line)
+	{
+		node = ft_lstnew(line);
+		if (!node)
+			cb_fatal_errors(1);
+		ft_lstadd_back(&map_as_list, node);
+		line = get_next_line(fd);
+	}
+	map = cb_map_list_to_matrix(map, map_as_list);
+	return (map);
+}
+
 t_map	*cb_load_map_file(char *path)
 {
 	int		fd;
@@ -185,14 +232,11 @@ t_map	*cb_load_map_file(char *path)
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		return (NULL);
-	//map = cb_read_header(fd, map);
-		//cb_load_textures(fd, map->txtr_lst)
-	//if (!map)
-	//	return (cb_errors(3));
-	//map = cb_read_map(fd, map->map_matrix);
-
-	//map->map cb
-	sl_rem_nl(map);
+	map = cb_read_header(fd, map);
+	if (!map)
+		return (NULL);
+	map->map_matrix = cb_read_map(fd, map->map_matrix);
+	//sl_rem_nl(map); //En so long usé esto para no tener /n en el mapa.
 	return (map);
 }
 
@@ -203,5 +247,5 @@ int	cb_startup(int argc, char **argv, t_map *map)
 	map = cb_load_map_file(argv[1]);
 	if (!map)
 		return (cb_errors(2));
-	return(0);
+	return (0);
 }

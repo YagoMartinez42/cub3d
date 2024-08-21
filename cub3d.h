@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:32 by samartin          #+#    #+#             */
-/*   Updated: 2024/08/20 14:32:42 by samartin         ###   ########.fr       */
+/*   Updated: 2024/08/21 13:45:09 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "maps.h"
 
 //Startup
-int	cb_startup(int argc, char **argv, t_map *map);
+int		cb_startup(int argc, char **argv, t_map *map);
 
 //Error Management
 int		cb_errors(uint8_t code);
