@@ -6,20 +6,11 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:03:15 by samartin          #+#    #+#             */
-/*   Updated: 2024/08/21 17:02:54 by samartin         ###   ########.fr       */
+/*   Updated: 2024/08/22 14:32:39 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-//Check .cub extension
-//Load Map
-	// ...
-//Parse map to struct
-	// ...
-//Validate map content
-	// ...
-//Load textures
 
 int	cb_is_whitespace(char c)
 {
@@ -236,7 +227,6 @@ t_map	*cb_load_map_file(char *path)
 	if (!map)
 		return (NULL);
 	map->map_matrix = cb_read_map(fd, map->map_matrix);
-	//sl_rem_nl(map); //En so long usé esto para no tener /n en el mapa.
 	return (map);
 }
 
@@ -247,5 +237,6 @@ int	cb_startup(int argc, char **argv, t_map *map)
 	map = cb_load_map_file(argv[1]);
 	if (!map)
 		return (cb_errors(2));
+	//Validate map content
 	return (0);
 }
