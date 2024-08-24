@@ -6,29 +6,15 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:03:15 by samartin          #+#    #+#             */
-/*   Updated: 2024/08/22 14:32:39 by samartin         ###   ########.fr       */
+/*   Updated: 2024/08/24 11:09:57 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	cb_is_whitespace(char c)
-{
-	char	*ws;
-
-	ws = " \t\v\n\f\r";
-	while (*ws)
-	{
-		if (c == *ws)
-			return (1);
-		ws++;
-	}
-	return (0);
-}
-
 char	*cb_skip_ws(char *line)
 {
-	while (*line && cb_is_whitespace(*line))
+	while (*line && ft_isspace(*line))
 		line++;
 	return (line);
 }
