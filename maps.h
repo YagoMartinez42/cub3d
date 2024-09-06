@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:46:18 by samartin          #+#    #+#             */
-/*   Updated: 2024/08/21 13:47:30 by samartin         ###   ########.fr       */
+/*   Updated: 2024/09/04 14:17:06 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # endif
 
 /**
- * The map structure contains all the data loaded from the map .cub file.
+ * Type Map structure: contains all the data loaded from the map .cub file.
  * @var map_size Width ([0]) and Height ([1]) of the rectangular region to be
  *  loaded.
  * @var floor_color RGBA quad in a single int, for floor visual region.
@@ -44,11 +44,11 @@
  */
 typedef struct s_map
 {
-	size_t	map_size[2];
-	int32_t	floor_color;
-	int32_t	ceil_color;
-	t_list	*txtr_lst;
-	char	**map_matrix;
+	size_t		map_size[2];
+	__int32_t	floor_color;
+	__int32_t	ceil_color;
+	t_list		*txtr_lst;
+	char		**map_matrix;
 }	t_map;
 
 #endif
