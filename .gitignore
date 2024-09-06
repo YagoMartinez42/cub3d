@@ -27,3 +27,5 @@ tags
 *.o
 *.out
 *.a
+# Executable
+cub3d
