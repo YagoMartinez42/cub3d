@@ -1,18 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   raycasting.h                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/03 15:55:27 by samartin          #+#    #+#             */
-/*   Updated: 2024/09/05 14:17:09 by samartin         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#ifndef RAYCASTING_H
-# define RAYCASTING_H
-# include <mlx.h>
+#ifndef GRAPHICS_H
+# define GRAPHICS_H
+# include "cub3d.h"
 
 /**
  * Type MinilibX Graphic Controller: Contains the two pointers needed by most
@@ -51,7 +39,7 @@ typedef struct s_texture
 	int		endian;
 	int		wd;
 	int		ht;
-}		t_texture;
+}				t_texture;
 
 /**
  * Type texture column: Used to mark a single column of pixels inside a texture.
@@ -60,8 +48,10 @@ typedef struct s_texture
  */
 typedef struct s_texture_column
 {
-	t_texture *texture;
-	int         column;
-}		t_texture_column;
+	t_texture	*texture;
+	int			column;
+}				t_texture_column;
 
+t_mlxgrph	*mlxgrph_new(void *mlx);
+void		destroy_window(t_mlxgrph *this);
 #endif
