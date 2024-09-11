@@ -16,18 +16,17 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <mlx.h>
-# include "libft/include/libft.h"
+# include "../libft/include/libft.h"
+# include "graphics.h"
+# include "map.h"
 # include "player.h"
-# include "raycasting.h"
-
-//Startup
-__int8_t	cb_startup(int argc, char **argv, t_map *map);
-
-//Init and Load
-t_mlxgrph	*cb_init_n_load(t_map *map);
-
-//Error Management
-__int8_t	cb_errors(__int8_t code);
-void	cb_fatal_errors(__int8_t code);
-
+# ifndef WINW
+#  define WINW 1920
+# endif
+# ifndef WINH
+#  define WINH 1080
+# endif
+# ifndef BPP
+#  define BPP 4
+# endif
 #endif

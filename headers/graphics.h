@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.h                                       :+:      :+:    :+:   */
+/*   graphics.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/03 15:55:27 by samartin          #+#    #+#             */
-/*   Updated: 2024/09/05 14:17:09 by samartin         ###   ########.fr       */
+/*   Created: 2024/09/11 13:55:00 by bvelasco          #+#    #+#             */
+/*   Updated: 2024/09/11 13:56:18 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAYCASTING_H
-# define RAYCASTING_H
-# include <mlx.h>
+#ifndef GRAPHICS_H
+# define GRAPHICS_H
+# include "cub3d.h"
 
 /**
  * Type MinilibX Graphic Controller: Contains the two pointers needed by most
@@ -21,11 +21,18 @@
  *  `mlx_init` function.
  * @var win: Void pointer to the window instance, created by the
  *  `mlx_new_window` function.
- */ 
+ */
+//mlx typedefs
+typedef void	t_mlx;
+typedef void	t_mlximg;
+typedef void	t_mlxwin;
+typedef void	t_scrbuff;
+
 typedef struct s_mlxgrph
 {
-	void	*mlx;
-	void	*win;
+	t_mlx		*mlx;
+	t_mlxwin	*win;
+	t_scrbuff	*scrnbuff;
 }		t_mlxgrph;
 
 /**
@@ -44,14 +51,14 @@ typedef struct s_mlxgrph
  */
 typedef struct s_texture
 {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		wd;
-	int		ht;
-}		t_texture;
+	t_mlximg	*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	int			wd;
+	int			ht;
+}				t_texture;
 
 /**
  * Type texture column: Used to mark a single column of pixels inside a texture.
@@ -60,8 +67,12 @@ typedef struct s_texture
  */
 typedef struct s_texture_column
 {
-	t_texture *texture;
-	int         column;
-}		t_texture_column;
+	t_texture	*texture;
+	int			column;
+}				t_texture_column;
 
+t_mlxgrph	*mlxgrph_new(void *mlx);
+void		destroy_window(t_mlxgrph *this);
+void		printcolumn(t_mlxgrph *graph, t_texture_column *texture,
+				int *cords, int size);
 #endif

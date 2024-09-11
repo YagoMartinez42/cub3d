@@ -15,7 +15,10 @@
 # ifndef FOV
 #  define FOV 60.0f
 # endif
-# include "maps.h"
+# ifndef VEL
+#  define VEL 0.2f
+# endif
+# include "map.h"
 
 /**
  * Type Player: Contains all the needed values to execute movement in a grid and
@@ -34,6 +37,10 @@ typedef struct s_player
 	t_map	*map;
 	float	coords[2];
 	float	aov;
-} t_player;
+}				t_player;
+
+t_player	*player_new(t_map *map);
+void		play_destroy(t_player *this);
+void		player_move(t_player *this, int dirx, int diry);
 
 #endif
