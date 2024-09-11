@@ -10,10 +10,17 @@
  * @var win: Void pointer to the window instance, created by the
  *  `mlx_new_window` function.
  */ 
+
+//mlx typedefs
+typedef	void t_mlx;
+typedef void t_mlxwin;
+typedef void t_scrbuff;
+
 typedef struct s_mlxgrph
 {
-	void	*mlx;
-	void	*win;
+	t_mlx		*mlx;
+	t_mlxwin	*win;
+	t_scrbuff	*scrnbuff;
 }		t_mlxgrph;
 
 /**
@@ -54,4 +61,6 @@ typedef struct s_texture_column
 
 t_mlxgrph	*mlxgrph_new(void *mlx);
 void		destroy_window(t_mlxgrph *this);
+void		printcolumn(t_mlxgrph *graph, t_texture_column *texture,
+						int *cords, int size);
 #endif
