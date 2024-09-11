@@ -37,7 +37,7 @@ typedef struct s_player
 	t_map	*map;
 	float	coords[2];
 	float	aov;
-} t_player;
+}				t_player;
 
 t_player	*player_new(t_map *map);
 void		play_destroy(t_player *this);
