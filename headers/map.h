@@ -6,23 +6,22 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:46:18 by samartin          #+#    #+#             */
-/*   Updated: 2024/09/04 14:17:06 by samartin         ###   ########.fr       */
+/*   Updated: 2024/09/19 15:42:26 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_H
 # define MAP_H
-# include "cub3d.h"
 
 /**
  * Type Map structure: contains all the data loaded from the map .cub file.
- * @var map_size Width ([0]) and Height ([1]) of the rectangular region to be
+ * @var map_size: Width ([0]) and height ([1]) of the rectangular region to be
  *  loaded.
- * @var floor_color RGBA quad in a single int, for floor visual region.
- * @var ceil_color RGBA quad in a single int, for ceiling visual region.
- * @var txtr_lst List of lists, each second dimmension contanins a single node
- *  with an MLX texture or more if they are for animation. The fixed
- *  order is: North Wall, East Wall, South Wall, West Wall, Sprites.
+ * @var floor_color: RGBA quad in a single int, for floor visual region.
+ * @var ceil_color: RGBA quad in a single int, for ceiling visual region.
+ * @var walls: Array of 4 textures for each of the sides of the square walls.
+ * @var txtr_lst: List of lists for sprites, each second dimmension contanins a
+ *  single node with an MLX texture or more if they are for animation.
  * @var map_matrix char 2D matrix containing 0 for walkable, 1 for wall,
  *  N-S-E-W for player pressence and orientation, whitespace for outer,
  *  non-walkable empty space.
@@ -37,6 +36,6 @@ typedef struct s_map
 	char		**map_matrix;
 }	t_map;
 
-t_map	*new_map(int map_fd);
+t_map	*new_map(int map_fd, t_mlx *mlx);
 void	destroy_map(t_map *this);
 #endif
