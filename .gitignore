@@ -17,6 +17,7 @@ Session.vim
 Sessionx.vim
 
 # Temporary
+*_temp.c
 .netrwhist
 *~
 # Auto-generated tag files
