@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:26 by samartin          #+#    #+#             */
-/*   Updated: 2024/09/03 15:50:21 by samartin         ###   ########.fr       */
+/*   Updated: 2024/10/17 11:22:00 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 */
 typedef struct s_player
 {
-	t_map	*map;
+	t_map	map;
 	float	coords[2];
 	float	aov;
 }				t_player;
