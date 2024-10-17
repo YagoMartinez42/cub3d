@@ -7,7 +7,7 @@ MLXDIR	:= minilibx-linux
 LIBFT	:= libft/lib/libft.a
 LFTDIR	:= libft
 RM		:= rm -rf
-SRC		:=
+SRC		:= main_temp.c ray.c
 OBJ		:= ${SRC:.c=.o}
 BNOBJ	:= ${BNSRC:.c=.o}
 
