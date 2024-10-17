@@ -7,7 +7,7 @@ MLXDIR	:= minilibx-linux
 LIBFT	:= libft/lib/libft.a
 LFTDIR	:= libft
 RM		:= rm -rf
-SRC		:= cub3d.c startup.c error_management.c init_n_load.c
+SRC		:=
 OBJ		:= ${SRC:.c=.o}
 BNOBJ	:= ${BNSRC:.c=.o}
 
@@ -16,10 +16,13 @@ all: ${NAME}
 ${NAME}: ${OBJ} ${MLXLIB} ${LIBFT}
 	${CC} ${OBJ} ${CFLAGS} ${MLXFLG} ${LIBFT} ${MLXLIB} -o ${NAME}
 
-${MLXLIB}:
+submodules:
+	git submodule init && git submodule update
+
+${MLXLIB}:	submodules
 	make -C ${MLXDIR}
 
-${LIBFT}:
+${LIBFT}:	submodules
 	make -C ${LFTDIR}
 
 clean:
