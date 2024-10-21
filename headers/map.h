@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:46:18 by samartin          #+#    #+#             */
-/*   Updated: 2024/10/17 18:38:30 by samartin         ###   ########.fr       */
+/*   Updated: 2024/09/19 15:42:26 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ typedef struct s_map
 	char		**map_matrix;
 }	t_map;
 
-t_map	new_map(int map_fd, t_mlx *mlx);
+t_map	*new_map(int map_fd, t_mlx *mlx);
 void	destroy_map(t_map *this);
 #endif

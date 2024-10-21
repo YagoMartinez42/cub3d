@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 13:55:00 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/10/17 18:37:59 by samartin         ###   ########.fr       */
+/*   Updated: 2024/09/11 13:56:18 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ typedef void	t_scrbuff;
 
 typedef struct s_mlxgrph
 {
-	void		*mlx;
-	void		*win;
+	t_mlx		*mlx;
+	t_mlxwin	*win;
 	t_scrbuff	*scrnbuff;
-}				t_mlxgrph;
+}		t_mlxgrph;
 
 /**
  * Type MinilibX Texture: An image struct to be used by MLX functions. We add

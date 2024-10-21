@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 11:23:38 by samartin          #+#    #+#             */
-/*   Updated: 2024/10/18 14:57:38 by samartin         ###   ########.fr       */
+/*   Updated: 2024/10/21 13:44:10 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ __uint8_t	c3d_read_map(int fd, t_map *map)
 	while (line && ft_strncmp(c3d_skip_ws(line), "", 1))
 	{
 		c3d_set_width(line, map->map_size);
-		node = ft_lstnew(line);
+		node = ft_lstnew_type(STR, (t_content)line);
 		if (!node)
 			c3d_fatal_errors(1);
 		ft_lstadd_back(&map_as_list, node);

@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 11:21:43 by samartin          #+#    #+#             */
-/*   Updated: 2024/10/18 14:58:15 by samartin         ###   ########.fr       */
+/*   Updated: 2024/10/21 13:59:21 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,19 @@ static __uint8_t	c3d_add_line(char *line, char **header, __uint8_t l_flags)
 			((!ft_strncmp(line, kwords[i], 2) && i > 3)))
 		{
 			if ((1 << i) & l_flags)
+			{
+				free(line);
 				return (c3d_free2d(kwords), c3d_clear_header(header));
+			}
 			header[i] = ft_strtrim(line + 2, " \t\v\n\r\f");
+			free(line);
 			return (c3d_free2d(kwords), 1 << i);
 		}
 		i++;
 	}
 	if (*line != '\0')
-		return (c3d_free2d(kwords), c3d_clear_header(header));
-	return (c3d_free2d(kwords));
+		return (free(line), c3d_free2d(kwords), c3d_clear_header(header));
+	return (free(line), c3d_free2d(kwords));
 }
 
 /**
@@ -162,7 +166,7 @@ __uint8_t	c3d_read_header(int fd, t_map *map, t_mlx *mlx)
 			line_flags += c3d_add_line(line, header, line_flags);
 			free(line);
 			if (line_flags >= 64)
-				return (1);
+				return (c3d_clear_header(header));
 			else if (line_flags == 63)
 				break ;
 		}
@@ -170,8 +174,8 @@ __uint8_t	c3d_read_header(int fd, t_map *map, t_mlx *mlx)
 			return (1);
 	}
 	if (c3d_load_textures(map, header, mlx))
-		return (c3d_clear_header(header), 1);
+		return (c3d_clear_header(header));
 	else if (c3d_assign_colors(map, header))
-		return (c3d_clear_header(header), 1);
-	return (0);
+		return (c3d_clear_header(header));
+	return (c3d_clear_header(header), 0);
 }
