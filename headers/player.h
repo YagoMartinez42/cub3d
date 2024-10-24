@@ -6,14 +6,14 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:26 by samartin          #+#    #+#             */
-/*   Updated: 2024/10/21 15:28:37 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/10/21 15:33:42 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PLAYER_H
 # define PLAYER_H
 # ifndef FOV
-#  define FOV 180.0f
+#  define FOV 60.0f
 # endif
 # ifndef VEL
 #  define VEL 1
