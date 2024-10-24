@@ -6,7 +6,7 @@ t_map init_map(int mapfd, t_mlx *mlx)
 	(void)mlx;
 	t_map map;
 	char	mapmatrix[7][7] =	{{1,1,1,1,1,1,1},
-								 {1,0,0,1,0,0,1},
+								 {1,0,0,0,0,0,1},
 								 {1,0,0,0,0,0,1},
 								 {1,1,0,'N',0,0,1},
 								 {1,0,0,0,1,0,1},
@@ -37,11 +37,17 @@ t_mlxgrph	init_graphics()
 	t_mlxgrph	result;
 	t_mlx		*mlx;
 	t_mlxwin	*win;
-	t_scrbuff	*scrnbuff;
+	t_texture	*scrnbuff;
+	void		*img;
 
 	mlx = mlx_init();
 	win = mlx_new_window(mlx, WINW, WINH, "Cube3d");
-	scrnbuff = mlx_new_image(mlx, WINW, WINH);
+	img = mlx_new_image(mlx, WINW, WINH);
+
+	scrnbuff = malloc(sizeof(t_texture));
+	scrnbuff->img = img;
+	scrnbuff->addr = (int *)mlx_get_data_addr(img, &scrnbuff->bits_per_pixel
+		,&scrnbuff->line_length, &scrnbuff->endian);
 	result.mlx = mlx;
 	result.win = win;
 	result.scrnbuff = scrnbuff;
@@ -53,8 +59,8 @@ t_player	init_player(t_map map)
 	t_player result;
 
 	result.map = map;
-	result.coords[0] = 3*32;
-	result.coords[1] = 3*32;
+	result.coords[0] = 10*32;
+	result.coords[1] = 10*32;
 	result.aov = M_PI;
 	result.xmov = 0;
 	result.ymov = 0;
@@ -67,7 +73,7 @@ t_cub3d	initializer(int fd)
 	t_cub3d	result;
 
 	result.mlxgraph = init_graphics();
-	result.map = init_map(fd, result.mlxgraph.mlx);
+	result.map = new_map(fd, result.mlxgraph.mlx);
 	result.player = init_player(result.map);
 	return (result);
 }
@@ -126,6 +132,5 @@ int main(int argc, char *argv[])
 	mlx_hook(c3d.mlxgraph.win, 2, 1L<<0, move, &c3d.player);
 	mlx_hook(c3d.mlxgraph.win, 3, 1L<<1, unmove, &c3d.player);
 	mlx_loop_hook(c3d.mlxgraph.mlx, main_loop, &c3d);
-	mlx_do_key_autorepeatoff(c3d.mlxgraph.mlx);
 	mlx_loop(c3d.mlxgraph.mlx);
 }
