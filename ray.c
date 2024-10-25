@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 20:17:07 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/10/24 19:56:52 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/10/25 23:06:48 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ float	launch_ray(t_cub3d c3d, float angle)
 {
 	float	cords[2];
 	float	dirs[2];
-	float	steps[2];
 	float	distance;
 
 	if (angle < 0)
@@ -36,13 +35,11 @@ float	launch_ray(t_cub3d c3d, float angle)
 	cords[1] = c3d.player.coords[1];
 	dirs[1] = cosf(angle);
 	dirs[0] = sinf(angle);
-	steps[0] = 1 / dirs[0];
-	steps[1] = 1 / dirs[1];
 	while (!detect_colision(cords[1]/32, cords[0]/32, c3d.map) && cords[0] > 0 && cords[1] > 0 && cords[0] < WINW && cords[1] < WINH)
 	{
 		cords[0] += dirs[0];
 		cords[1] += dirs[1];
-		distance += fabsf(dirs[0]) + fabsf(dirs[1]);
+		distance += sqrtf(dirs[0] * dirs[0] + dirs[1] * dirs[1]);
 	}
 	return (distance);
 }
