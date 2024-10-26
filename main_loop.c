@@ -57,7 +57,7 @@ void	drawline(void *c3d, int j, float k)
 	h_2 = h/2;
 	while (l < h_2)
 	{
-		screenbuff_pixel_put(cub3d->mlxgraph.scrnbuff, j, WINH/2 + l, 0x00FFFFFF);
+		screenbuff_pixel_put(cub3d->mlxgraph.scrnbuff, j, roundf(WINH/2 + l), 0x00FFFFFF);
 		l++;
 	}
 }
@@ -78,7 +78,7 @@ int	main_loop(void *c3d)
 	while (j < WINW)
 	{
 		float k = launch_ray(*cub3d, cub3d->player.aov - (i * (M_PI / 180)));
-
+		k = k * cosf(i * (M_PI/180));
 		i += pixel_angle;
 		drawline(c3d,j,k);
 		j++;
