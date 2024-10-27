@@ -37,7 +37,7 @@ static void	move_player(t_player *player)
 void	drawline(void *c3d, int j, float k)
 {
 	const t_cub3d	*cub3d = c3d;
-	float	h = (WINH*32)/k;
+	float	h = (WINH)/k * 32;
 	int		i;
 	int		l;
 	int		h_2;
@@ -57,7 +57,7 @@ void	drawline(void *c3d, int j, float k)
 	h_2 = h/2;
 	while (l < h_2)
 	{
-		screenbuff_pixel_put(cub3d->mlxgraph.scrnbuff, j, roundf(WINH/2 + l), 0x00FFFFFF);
+		screenbuff_pixel_put(cub3d->mlxgraph.scrnbuff, j, WINH/2 + l, 0x00FFFFFF);
 		l++;
 	}
 }
