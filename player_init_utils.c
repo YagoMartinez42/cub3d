@@ -1,36 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_map.c                                          :+:      :+:    :+:   */
+/*   player_init_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/12 15:04:26 by samartin          #+#    #+#             */
-/*   Updated: 2024/10/27 12:14:54 by samartin         ###   ########.fr       */
+/*   Created: 2024/10/24 14:24:00 by samartin          #+#    #+#             */
+/*   Updated: 2024/10/27 14:50:26 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/cub3d.h"
-#include "headers/aux/new_map.h"
 
-t_map	new_map(int map_fd, t_mlx *mlx)
+float	c3d_get_player_pos(char **map, size_t w, size_t h, float *player_pos)
 {
-	t_map	map;
+	size_t			i;
+	size_t			j;
+	static char		*angle = "NESW";
+	char			*found;
 
-	if (c3d_read_header(map_fd, &map, mlx))
-		map.map_matrix = NULL;
-	else if (c3d_read_map(map_fd, &map))
+	i = 0;
+	player_pos[0] = -1;
+	player_pos[1] = -1;
+	while (i < h)
 	{
-		if (map.map_matrix)
+		j = 0;
+		while (j < w)
 		{
-			c3d_free2d_size(map.map_matrix, map.map_size[1]);
-			map.map_matrix = NULL;
+			found = ft_strchr(angle, map[i][j]);
+			if (found)
+			{
+				player_pos[0] = (float)j;
+				player_pos[1] = (float)i;
+				return ((float)((found - angle) * 90));
+			}
+			j++;
 		}
+		i++;
 	}
-	else if (c3d_validate_map(&map))
-	{
-		c3d_free2d_size(map.map_matrix, map.map_size[1]);
-		map.map_matrix = NULL;
-	}
-	return (map);
+	return (-1.0F);
 }
