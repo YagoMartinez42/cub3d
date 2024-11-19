@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_new.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:43:08 by samartin          #+#    #+#             */
-/*   Updated: 2024/10/27 11:55:50 by samartin         ###   ########.fr       */
+/*   Updated: 2024/11/19 17:17:05 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

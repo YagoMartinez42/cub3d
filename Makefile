@@ -1,6 +1,6 @@
 NAME	:= cub3d
 CC		:= cc
-CFLAGS	:= -Wall -Wextra -Werror -Iminilibx-linux
+CFLAGS	:= -Wall -Wextra -Werror -Iminilibx-linux -g3
 MLXFLG	:= -lXext -lX11 -Lminilibx-linux -lmlx -lm
 MLXLIB	:= minilibx-linux/libmlx.a
 MLXDIR	:= minilibx-linux
@@ -18,6 +18,9 @@ SRC		:= main.c \
 			read_map.c\
 			parsing_matrix_utils.c\
 			error_management.c\
+			validate_map.c \
+			player_new.c \
+			player_init_utils.c
 
 OBJ		:= ${SRC:.c=.o}
 BNOBJ	:= ${BNSRC:.c=.o}

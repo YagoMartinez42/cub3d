@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:31:39 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/11/19 10:17:50 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/11/19 16:59:36 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	move_player(t_player *player)
 	if (!detect_colision((player->coords[1]
 				+ player->xmov * VEL * cosf(player->aov + M_PI_2))
 			, (player->coords[0] + player->xmov * VEL
-				* sinf(player->aov + M_PI_2)), player->map))
+				* sinf(player->aov + M_PI_2)), *player->map, NULL))
 	{
 		player->coords[0] += player->xmov * VEL * sinf(player->aov + M_PI_2);
 		player->coords[1] += player->xmov * VEL * cosf(player->aov + M_PI_2);
@@ -25,7 +25,7 @@ static void	move_player(t_player *player)
 	if (!detect_colision((player->coords[1]
 				+ player->ymov * VEL * cosf(player->aov + M_PI))
 			, (player->coords[0] + player->ymov * VEL
-				* sinf(player->aov + M_PI)), player->map))
+				* sinf(player->aov + M_PI)), *player->map, NULL))
 	{
 		player->coords[0] += player->ymov * VEL * sinf(player->aov + M_PI);
 		player->coords[1] += player->ymov * VEL * cosf(player->aov + M_PI);
@@ -70,7 +70,11 @@ int	main_loop(void *c3d)
 	int			j;
 	float		k;
 	float		pixel_angle;
+	float		**col_point;
 
+	col_point = malloc(2 * sizeof(void *));
+	col_point[0] = malloc(sizeof(float));
+	col_point[1] = malloc(sizeof(float));
 	cub3d = c3d;
 	cub3d = c3d;
 	move_player(&cub3d->player);
@@ -79,7 +83,8 @@ int	main_loop(void *c3d)
 	pixel_angle = FOV / WINW;
 	while (j < WINW)
 	{
-		k = launch_ray(*cub3d, cub3d->player.aov - (i * (M_PI / 180)));
+		k = launch_ray(*cub3d, cub3d->player.aov - (i * (M_PI / 180)),
+			col_point);
 		i += pixel_angle;
 		drawline(c3d, j, k);
 		j++;
