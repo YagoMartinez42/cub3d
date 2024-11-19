@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:26 by samartin          #+#    #+#             */
-/*   Updated: 2024/10/27 12:21:32 by samartin         ###   ########.fr       */
+/*   Updated: 2024/11/19 11:40:42 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@
 #  define FOV 60.0f
 # endif
 # ifndef VEL
-#  define VEL 0.2f
+#  define VEL 0.1f
 # endif
-# include "map.h"
 
 /**
  * Type Player: Contains all the needed values to execute movement in a grid and
@@ -37,10 +36,19 @@ typedef struct s_player
 	t_map	*map;
 	float	coords[2];
 	float	aov;
+	int		xmov;
+	int		ymov;
+	int		rotate;
 }				t_player;
 
 t_player	player_new(t_map *map);
 void		play_destroy(t_player *this);
 void		player_move(t_player *this, int dirx, int diry);
+int			move(int keycode, void *param);
+int			unmove(int keycode, void *param);
+int			main_loop(void *c3d);
+int			detect_colision(float y, float x, t_map map);
+t_player	init_player(t_map map);
+int			player_move(int keycode, void *player);
 
 #endif

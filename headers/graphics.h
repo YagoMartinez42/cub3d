@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 13:55:00 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/11/18 16:09:54 by samartin         ###   ########.fr       */
+/*   Updated: 2024/11/19 10:17:40 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,11 @@
  * @var win: Void pointer to the window instance, created by the
  *  `mlx_new_window` function.
  */
+
 //mlx typedefs
 typedef void	t_mlx;
-typedef void	t_mlximg;
 typedef void	t_mlxwin;
-typedef void	t_scrbuff;
-
-typedef struct s_mlxgrph
-{
-	t_mlx		*mlx;
-	t_mlxwin	*win;
-	t_scrbuff	*scrnbuff;
-}		t_mlxgrph;
+typedef void	t_mlximg;
 
 /**
  * Type MinilibX Texture: An image struct to be used by MLX functions. We add
@@ -52,7 +45,7 @@ typedef struct s_mlxgrph
 typedef struct s_texture
 {
 	t_mlximg	*img;
-	char		*addr;
+	int			*addr;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
@@ -60,6 +53,13 @@ typedef struct s_texture
 	int			ht;
 }				t_texture;
 
+//mlx grph struct
+typedef struct s_mlxgrph
+{
+	t_mlx		*mlx;
+	t_mlxwin	*win;
+	t_texture	*scrnbuff;
+}		t_mlxgrph;
 
 /**
  * Type texture column: Used to make an equivalency between column of pixels in
@@ -83,4 +83,5 @@ typedef struct	s_texture_column
 t_mlxgrph	*mlxgrph_new(void *mlx);
 void		destroy_window(t_mlxgrph *this);
 void		print_column(t_texture buffer, t_texture_column tcol, int size);
+void		scrnbuff_pixel_put(t_texture	*texture, int x, int y, int color);
 #endif

@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:32 by samartin          #+#    #+#             */
-/*   Updated: 2024/10/27 13:01:40 by samartin         ###   ########.fr       */
+/*   Updated: 2024/10/25 23:14:28 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 # include "player.h"
 # include "error_management.h"
 # ifndef WINW
-#  define WINW 1920
+#  define WINW 800
 # endif
 # ifndef WINH
-#  define WINH 1080
+#  define WINH 600
 # endif
 # ifndef BPP
 #  define BPP 4
