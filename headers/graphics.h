@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 13:55:00 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/10/24 19:53:44 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/11/19 10:17:40 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ typedef struct s_texture_column
 
 t_mlxgrph	*mlxgrph_new(void *mlx);
 void		destroy_window(t_mlxgrph *this);
-void		screenbuff_pixel_put(t_texture	*texture, int x, int y, int color);
+void		scrnbuff_pixel_put(t_texture	*texture, int x, int y, int color);
 void		printcolumn(t_mlxgrph *graph, t_texture_column *texture,
 				int *cords, int size);
 #endif

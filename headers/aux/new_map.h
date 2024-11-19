@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   new_map.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 13:10:40 by samartin          #+#    #+#             */
-/*   Updated: 2024/10/21 12:50:19 by samartin         ###   ########.fr       */
+/*   Updated: 2024/11/19 11:40:23 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 __uint8_t	c3d_read_header(int fd, t_map *map, t_mlx *mlx);
 __uint8_t	c3d_read_map(int fd, t_map *map);
-__uint8_t	c3d_validate_map(char ** map_matrix);
+__uint8_t	c3d_validate_map(char **map_matrix);
 
 //Matrix utils
 __uint8_t	c3d_matrix_health_3(char **matrix);

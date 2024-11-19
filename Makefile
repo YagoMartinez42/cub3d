@@ -8,7 +8,17 @@ LIBFT_FLAG := -Llibft/lib -lft
 LIBFT	:= libft/lib/libft.a
 LFTDIR	:= libft
 RM		:= rm -rf
-SRC		:= main.c scrnbuffer.c main_loop.c new_map.c ray.c read_header.c read_map.c parsing_matrix_utils.c error_management.c
+SRC		:= main.c \
+			scrnbuffer.c\
+			user_input.c\
+			main_loop.c\
+			new_map.c\
+			ray.c\
+			read_header.c\
+			read_map.c\
+			parsing_matrix_utils.c\
+			error_management.c\
+
 OBJ		:= ${SRC:.c=.o}
 BNOBJ	:= ${BNSRC:.c=.o}
 

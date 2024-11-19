@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:26 by samartin          #+#    #+#             */
-/*   Updated: 2024/10/21 15:33:42 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/11/19 11:40:42 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #  define FOV 60.0f
 # endif
 # ifndef VEL
-#  define VEL 1
+#  define VEL 0.1f
 # endif
 
 /**
@@ -41,9 +41,11 @@ typedef struct s_player
 	int		rotate;
 }				t_player;
 
-int	main_loop(void *c3d);
-int	detect_colision(float y, float x, t_map map);
+int			move(int keycode, void *param);
+int			unmove(int keycode, void *param);
+int			main_loop(void *c3d);
+int			detect_colision(float y, float x, t_map map);
 t_player	init_player(t_map map);
-int		player_move(int keycode, void *player);
+int			player_move(int keycode, void *player);
 
 #endif
