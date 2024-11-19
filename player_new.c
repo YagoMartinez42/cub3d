@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_map.c                                          :+:      :+:    :+:   */
+/*   player_new.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/12 15:04:26 by samartin          #+#    #+#             */
-/*   Updated: 2024/10/27 12:14:54 by samartin         ###   ########.fr       */
+/*   Created: 2024/10/23 13:43:08 by samartin          #+#    #+#             */
+/*   Updated: 2024/10/27 11:55:50 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/cub3d.h"
+#include "headers/player.h"
 #include "headers/aux/new_map.h"
 
-t_map	new_map(int map_fd, t_mlx *mlx)
+t_player	player_new(t_map *map)
 {
-	t_map	map;
+	t_player	player;
 
-	if (c3d_read_header(map_fd, &map, mlx))
-		map.map_matrix = NULL;
-	else if (c3d_read_map(map_fd, &map))
+	player.map = map;
+	player.aov = c3d_get_player_pos(map->map_matrix, map->map_size[0], \
+		map->map_size[1], player.coords);
+	if (player.aov < 0)
 	{
-		if (map.map_matrix)
-		{
-			c3d_free2d_size(map.map_matrix, map.map_size[1]);
-			map.map_matrix = NULL;
-		}
+		c3d_free2d_size(player.map->map_matrix, player.map->map_size[1]);
+		player.map->map_matrix = NULL;
 	}
-	else if (c3d_validate_map(&map))
-	{
-		c3d_free2d_size(map.map_matrix, map.map_size[1]);
-		map.map_matrix = NULL;
-	}
-	return (map);
+	return (player);
 }

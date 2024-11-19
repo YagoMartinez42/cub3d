@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 11:21:43 by samartin          #+#    #+#             */
-/*   Updated: 2024/10/21 13:59:21 by samartin         ###   ########.fr       */
+/*   Updated: 2024/10/27 14:48:34 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char	**c3d_populate_kw(void)
  *  compared with the content of the line.
  * @return The value of the keyword found.
  */
-static __uint8_t	c3d_add_line(char *line, char **header, __uint8_t l_flags)
+static uint8_t	c3d_add_line(char *line, char **header, uint8_t l_flags)
 {
 	char	**kwords;
 	int		i;
@@ -89,7 +89,7 @@ static __uint8_t	c3d_add_line(char *line, char **header, __uint8_t l_flags)
  * @return 1 if the map parameter was NULL or a image could not be loaded from
  *  the path given, 0 if all worked fine.
  */
-static __uint8_t	c3d_load_textures(t_map *map, char **header, t_mlx *mlx)
+static uint8_t	c3d_load_textures(t_map *map, char **header, t_mlx *mlx)
 {
 	int		i;
 	int		vdr;
@@ -119,7 +119,7 @@ static __uint8_t	c3d_load_textures(t_map *map, char **header, t_mlx *mlx)
  * @return 1 if the map parameter was NULL or the color fields were unreadable.
  *  0 If all worked fine.
  */
-static __uint8_t	c3d_assign_colors(t_map *map, char **header)
+static uint8_t	c3d_assign_colors(t_map *map, char **header)
 {
 	char	**rgbs;
 
@@ -151,11 +151,11 @@ static __uint8_t	c3d_assign_colors(t_map *map, char **header)
  * @return 1 in case the flags reveal an incorrect header or EOF is reached
  *  with `get_next_line`, 0 if all worked fine.
  */
-__uint8_t	c3d_read_header(int fd, t_map *map, t_mlx *mlx)
+uint8_t	c3d_read_header(int fd, t_map *map, t_mlx *mlx)
 {
-	char		*line;
-	char		*header[6];
-	__uint8_t	line_flags;
+	char	*line;
+	char	*header[6];
+	uint8_t	line_flags;
 
 	line_flags = 0;
 	while (42)

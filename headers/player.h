@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:26 by samartin          #+#    #+#             */
-/*   Updated: 2024/10/17 11:22:00 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/10/27 12:21:32 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@
 */
 typedef struct s_player
 {
-	t_map	map;
+	t_map	*map;
 	float	coords[2];
 	float	aov;
 }				t_player;
 
-t_player	*player_new(t_map *map);
+t_player	player_new(t_map *map);
 void		play_destroy(t_player *this);
 void		player_move(t_player *this, int dirx, int diry);
 
