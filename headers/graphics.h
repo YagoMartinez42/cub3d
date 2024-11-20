@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 13:55:00 by bvelasco          #+#    #+#             */
 /*   Updated: 2024/11/19 10:17:40 by bvelasco         ###   ########.fr       */
@@ -62,26 +62,19 @@ typedef struct s_mlxgrph
 }		t_mlxgrph;
 
 /**
- * Type texture column: Used to make an equivalency between column of pixels in
- *  the texture and column of pixels in the window buffer.
- * @var ray: number of ray starting from zero. There is one ray for each window
- *  horizontal pixel.
+ * Type texture column: Used to mark a single column of pixels inside a texture.
  * @var texture: t_texture from which to select the column.
- * @var floor_color: RGBA quad in a single int, for floor visual region.
- * @var ceil_color: RGBA quad in a single int, for ceiling visual region.
- * @var wal_point: Horizontal position of the column in a range 0-1.
+ * @var column: Horizontal index of the column.
  */
-typedef struct	s_texture_column
+typedef struct s_texture_column
 {
-	int			ray;
 	t_texture	*texture;
-	int32_t		floor_color;
-	int32_t		ceil_color;
-	float		wall_point;
+	int			column;
 }				t_texture_column;
 
 t_mlxgrph	*mlxgrph_new(void *mlx);
 void		destroy_window(t_mlxgrph *this);
-void		print_column(t_texture buffer, t_texture_column tcol, int size);
 void		scrnbuff_pixel_put(t_texture	*texture, int x, int y, int color);
+void		printcolumn(t_mlxgrph *graph, t_texture_column *texture,
+				int *cords, int size);
 #endif
