@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   new_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:04:26 by samartin          #+#    #+#             */
-/*   Updated: 2024/11/19 17:23:55 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/10/27 12:14:54 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ t_map	new_map(int map_fd, t_mlx *mlx)
 			map.map_matrix = NULL;
 		}
 	}
-//	else if (c3d_validate_map(&map))
-//	{
-//		c3d_free2d_size(map.map_matrix, map.map_size[1]);
-//		map.map_matrix = NULL;
-//	}
+	else if (c3d_validate_map(&map))
+	{
+		c3d_free2d_size(map.map_matrix, map.map_size[1]);
+		map.map_matrix = NULL;
+	}
 	return (map);
 }
