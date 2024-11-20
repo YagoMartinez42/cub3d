@@ -6,12 +6,13 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:46:18 by samartin          #+#    #+#             */
-/*   Updated: 2024/10/21 15:36:13 by samartin         ###   ########.fr       */
+/*   Updated: 2024/11/13 14:55:37 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_H
 # define MAP_H
+# include "cub3d.h"
 
 /**
  * Type Map structure: contains all the data loaded from the map .cub file.
@@ -29,8 +30,8 @@
 typedef struct s_map
 {
 	size_t		map_size[2];
-	__int32_t	floor_color;
-	__int32_t	ceil_color;
+	int32_t		floor_color;
+	int32_t		ceil_color;
 	t_texture	walls[4];
 	t_list		*animated_txtr_lst;
 	char		**map_matrix;

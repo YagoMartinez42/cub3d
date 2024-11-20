@@ -1,15 +1,14 @@
 NAME	:= cub3d
 CC		:= cc
-CFLAGS	:= -Wall -Wextra -Werror -Iminilibx-linux -g3 -fsanitize=address
+CFLAGS	:= -Wall -Wextra -Werror -Iminilibx-linux -g3
 MLXFLG	:= -lXext -lX11 -Lminilibx-linux
 MLXLIB	:= minilibx-linux/libmlx.a
 MLXDIR	:= minilibx-linux
 LIBFT	:= libft/lib/libft.a
 LFTDIR	:= libft
 RM		:= rm -rf
-SRC		:=
+SRC		:= cub3d.c error_management.c new_map.c read_map.c read_header.c parsing_matrix_utils.c validate_map.c player_new.c player_init_utils.c
 OBJ		:= ${SRC:.c=.o}
-BNOBJ	:= ${BNSRC:.c=.o}
 
 all: ${NAME}
 

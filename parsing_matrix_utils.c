@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 11:25:53 by samartin          #+#    #+#             */
-/*   Updated: 2024/10/27 14:40:55 by samartin         ###   ########.fr       */
+/*   Updated: 2024/10/27 15:27:01 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ uint8_t	c3d_free2d_size(char **matrix, int size)
 		i++;
 	}
 	free (matrix);
-	return (0);
+	return (1);
 }
 
 /**
