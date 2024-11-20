@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_management.h                                 :+:      :+:    :+:   */
+/*   scrnbuffer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 14:28:10 by samartin          #+#    #+#             */
-/*   Updated: 2024/11/20 15:35:27 by samartin         ###   ########.fr       */
+/*   Created: 2024/11/19 10:25:06 by bvelasco          #+#    #+#             */
+/*   Updated: 2024/11/19 10:25:12 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_MANAGEMENT_H
-# define ERROR_MANAGEMENT_H
+#include "headers/cub3d.h"
 
-int8_t	c3d_errors(int8_t code);
-void	c3d_fatal_errors(int8_t code);
-void	c3d_close_n_exit(t_mlx *mlx, int8_t code);
-
-#endif
+void	scrnbuff_pixel_put(t_texture	*texture, int x, int y, int color)
+{
+	if (x < 0 || x > WINW || y < 0 || y > WINH)
+		return ;
+	texture->addr[(WINW * y) + x] = color;
+}

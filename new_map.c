@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:04:26 by samartin          #+#    #+#             */
-/*   Updated: 2024/10/27 12:14:54 by samartin         ###   ########.fr       */
+/*   Updated: 2024/10/21 13:08:52 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,9 @@ t_map	new_map(int map_fd, t_mlx *mlx)
 	{
 		if (map.map_matrix)
 		{
-			c3d_free2d_size(map.map_matrix, map.map_size[1]);
+			c3d_free2d(map.map_matrix);
 			map.map_matrix = NULL;
 		}
-	}
-	else if (c3d_validate_map(&map))
-	{
-		c3d_free2d_size(map.map_matrix, map.map_size[1]);
-		map.map_matrix = NULL;
 	}
 	return (map);
 }

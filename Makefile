@@ -1,19 +1,30 @@
 NAME	:= cub3d
 CC		:= cc
-CFLAGS	:= -Wall -Wextra -Werror -Iminilibx-linux -g3
-MLXFLG	:= -lXext -lX11 -Lminilibx-linux
+CFLAGS	:= -Wall -Wextra -Werror -Iminilibx-linux
+MLXFLG	:= -lXext -lX11 -Lminilibx-linux -lmlx -lm
 MLXLIB	:= minilibx-linux/libmlx.a
 MLXDIR	:= minilibx-linux
+LIBFT_FLAG := -Llibft/lib -lft
 LIBFT	:= libft/lib/libft.a
 LFTDIR	:= libft
 RM		:= rm -rf
-SRC		:= cub3d.c error_management.c new_map.c read_map.c read_header.c parsing_matrix_utils.c validate_map.c player_new.c player_init_utils.c
+SRC		:= main.c \
+			scrnbuffer.c\
+			user_input.c\
+			main_loop.c\
+			new_map.c\
+			ray.c\
+			read_header.c\
+			read_map.c\
+			parsing_matrix_utils.c\
+			error_management.c\
+
 OBJ		:= ${SRC:.c=.o}
 
 all: ${NAME}
 
 ${NAME}: ${OBJ} ${MLXLIB} ${LIBFT}
-	${CC} ${OBJ} ${CFLAGS} ${MLXFLG} ${LIBFT} ${MLXLIB} -o ${NAME}
+	${CC} -o $(NAME) ${OBJ} ${CFLAGS} ${MLXFLG} ${LIBFT_FLAG}
 
 submodules:
 	git submodule init && git submodule update
