@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:26 by samartin          #+#    #+#             */
 /*   Updated: 2024/11/19 11:40:42 by bvelasco         ###   ########.fr       */
@@ -33,7 +33,7 @@
 */
 typedef struct s_player
 {
-	t_map	*map;
+	t_map	map;
 	float	coords[2];
 	float	aov;
 	int		xmov;
@@ -41,9 +41,6 @@ typedef struct s_player
 	int		rotate;
 }				t_player;
 
-t_player	player_new(t_map *map);
-void		play_destroy(t_player *this);
-void		player_move(t_player *this, int dirx, int diry);
 int			move(int keycode, void *param);
 int			unmove(int keycode, void *param);
 int			main_loop(void *c3d);
