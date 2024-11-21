@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 11:25:53 by samartin          #+#    #+#             */
-/*   Updated: 2024/11/20 15:32:09 by samartin         ###   ########.fr       */
+/*   Updated: 2024/11/21 16:03:10 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * 
  * @return 1 if the pointer was NULL, 0 if any free worked.
  */
-__uint8_t	c3d_free2d(char **array_of_str)
+uint8_t	c3d_free2d(char **array_of_str)
 {
 	int	i;
 
@@ -44,7 +44,7 @@ __uint8_t	c3d_free2d(char **array_of_str)
  * 
  * @return 255 in any case, it will be ignored if the map parsing was complete.
  */
-__uint8_t	c3d_clear_header(char **header)
+uint8_t	c3d_clear_header(char **header)
 {
 	int	i;
 
@@ -90,7 +90,7 @@ uint8_t	c3d_free2d_size(char **matrix, int size)
  * @return If index 3 and no other is NULL, returns 1 for true, if any element
  *  before index 3 is NULL, or index 3 is not, returns 0 for false.
  */
-__uint8_t	c3d_matrix_health_3(char **matrix)
+uint8_t	c3d_matrix_health_3(char **matrix)
 {
 	int		i;
 

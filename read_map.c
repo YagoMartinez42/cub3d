@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 11:23:38 by samartin          #+#    #+#             */
-/*   Updated: 2024/10/21 13:44:10 by samartin         ###   ########.fr       */
+/*   Updated: 2024/11/21 16:03:34 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ static void	c3d_set_width(char *line, size_t *map_size)
  * @return The same pointer that was received unless it has been nullified by
  *  an error.
  */
-__uint8_t	c3d_read_map(int fd, t_map *map)
+uint8_t	c3d_read_map(int fd, t_map *map)
 {
 	char	*line;
 	t_list	*map_as_list;
