@@ -6,13 +6,13 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:07:19 by samartin          #+#    #+#             */
-/*   Updated: 2024/11/20 15:28:58 by samartin         ###   ########.fr       */
+/*   Updated: 2024/11/21 15:19:18 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/cub3d.h"
 
-__int8_t	c3d_errors(__int8_t code)
+int8_t	c3d_errors(int8_t code)
 {
 	if (code == 1)
 		write (2, "Error\nUsage is \"cub3d [path to map file .cub]\"\n", 47);
@@ -27,7 +27,7 @@ __int8_t	c3d_errors(__int8_t code)
 	return (code);
 }
 
-void	c3d_fatal_errors(__int8_t code)
+void	c3d_fatal_errors(int8_t code)
 {
 	if (code == -1)
 		perror("Error: Unable to allocate memory\n");

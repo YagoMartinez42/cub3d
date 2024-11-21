@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:32 by samartin          #+#    #+#             */
-/*   Updated: 2024/11/20 15:35:56 by samartin         ###   ########.fr       */
+/*   Updated: 2024/11/21 15:14:55 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <mlx.h>
 # include <math.h>
+# include <inttypes.h>
 # include "../libft/include/libft.h"
 # include "graphics.h"
 # include "map.h"
