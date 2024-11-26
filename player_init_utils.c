@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:24:00 by samartin          #+#    #+#             */
-/*   Updated: 2024/11/21 18:01:33 by samartin         ###   ########.fr       */
+/*   Updated: 2024/11/26 08:29:01 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ float	c3d_get_player_pos(char **map, size_t w, size_t h, float *player_pos)
 {
 	size_t			i;
 	size_t			j;
-	static char		*angle = "NESW";
+	static char		*angle = "ENWS";
 	char			*found;
 	i = 0;
 	player_pos[0] = -1;
@@ -29,8 +29,8 @@ float	c3d_get_player_pos(char **map, size_t w, size_t h, float *player_pos)
 			found = ft_strchr(angle, map[i][j]);
 			if (found)
 			{
-				player_pos[0] = (float)j;
-				player_pos[1] = (float)i;
+				player_pos[0] = j + 0.5F;
+				player_pos[1] = i + 0.5F;
 				return ((float)((found - angle) * (M_PI_2)));
 			}
 			j++;
