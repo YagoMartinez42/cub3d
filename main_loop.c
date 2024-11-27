@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:31:39 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/11/19 10:17:50 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/11/27 22:02:20 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,22 @@ void	drawline(void *c3d, int j, float k)
 	int				h_2;
 
 	i = 0;
-	h = (WINH / k);
+	h = roundf(WINH / k);
 	while (i < WINH / 2)
 	{
-		scrnbuff_pixel_put(cub3d->mlxgraph.scrnbuff, j, i, 0xFF00);
+		scrnbuff_pixel_put(cub3d->mlxgraph.scrnbuff, j, i, 0x87CEEB);
 		i++;
 	}
 	while (i < WINH)
 	{
-		scrnbuff_pixel_put(cub3d->mlxgraph.scrnbuff, j, i, 0x0);
+		scrnbuff_pixel_put(cub3d->mlxgraph.scrnbuff, j, i, 0xA0522D);
 		i++;
 	}
 	l = -h / 2;
 	h_2 = h / 2;
 	while (l < h_2)
 	{
-		scrnbuff_pixel_put(cub3d->mlxgraph.scrnbuff, j, WINH / 2 + l, 0xFFFFFF);
+		scrnbuff_pixel_put(cub3d->mlxgraph.scrnbuff, j, WINH / 2 + l, 0x808080);
 		l++;
 	}
 }
