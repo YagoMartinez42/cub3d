@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:18:21 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/11/19 11:35:53 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:52:57 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ t_mlxgrph	init_graphics(void)
 	return (result);
 }
 
-t_player	init_player(t_map map)
+t_player	init_player(int fd, void *mlxptr)
 {
 	t_player	result;
 
-	result.map = map;
+	result.map = new_map(fd, mlxptr);
 	result.coords[0] = 10;
 	result.coords[1] = 10;
 	result.aov = M_PI / 2;
@@ -59,8 +59,7 @@ t_cub3d	initializer(int fd)
 	t_cub3d	result;
 
 	result.mlxgraph = init_graphics();
-	result.map = new_map(fd, result.mlxgraph.mlx);
-	result.player = init_player(result.map);
+	result.player = init_player(fd, result.mlxgraph.mlx);
 	return (result);
 }
 
