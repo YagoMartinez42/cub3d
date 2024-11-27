@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:32 by samartin          #+#    #+#             */
-/*   Updated: 2024/10/25 23:14:28 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:48:00 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@
 typedef struct s_cub3d
 {
 	t_mlxgrph	mlxgraph;
-	t_map		map;
 	t_player	player;
 }				t_cub3d;
 
