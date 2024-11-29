@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:26 by samartin          #+#    #+#             */
-/*   Updated: 2024/11/19 11:40:42 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/11/27 22:00:18 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int			move(int keycode, void *param);
 int			unmove(int keycode, void *param);
 int			main_loop(void *c3d);
 int			detect_colision(float y, float x, t_map map);
-t_player	init_player(t_map map);
+t_player	init_player(int fd, void *mlxptr);
 int			player_move(int keycode, void *player);
 
 #endif

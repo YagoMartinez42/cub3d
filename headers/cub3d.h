@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:32 by samartin          #+#    #+#             */
-/*   Updated: 2024/11/21 15:14:55 by samartin         ###   ########.fr       */
+/*   Updated: 2024/11/29 13:46:07 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@
 typedef struct s_cub3d
 {
 	t_mlxgrph	mlxgraph;
-	t_map		map;
 	t_player	player;
 }				t_cub3d;
 
