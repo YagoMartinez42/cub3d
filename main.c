@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:18:21 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/11/26 13:52:57 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/12/02 12:04:17 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,26 +40,25 @@ t_mlxgrph	init_graphics(void)
 	return (result);
 }
 
-t_player	init_player(int fd, void *mlxptr)
-{
-	t_player	result;
-
-	result.map = new_map(fd, mlxptr);
-	result.coords[0] = 10;
-	result.coords[1] = 10;
-	result.aov = M_PI / 2;
-	result.xmov = 0;
-	result.ymov = 0;
-	result.rotate = 0;
-	return (result);
-}
-
 t_cub3d	initializer(int fd)
 {
 	t_cub3d	result;
 
+	result.is_valid = 0;
+	if (fd < 0)
+	{
+		write(2, "Could not open file\n", 21);
+		return (result);
+	}
 	result.mlxgraph = init_graphics();
+	if (!(result.mlxgraph.mlx))
+	{
+		write(2, "Could not init MiniLibX\n", 24);
+		return(result);
+	}
 	result.player = init_player(fd, result.mlxgraph.mlx);
+	if (result.player.map.map_matrix)
+		result.is_valid = 1;
 	return (result);
 }
 
@@ -67,11 +66,14 @@ int	main(int argc, char *argv[])
 {
 	t_cub3d	c3d;
 
-	if (argc != 2)
-		return (1);
+	if (argc != 2 || ft_strncmp((argv[1] + ft_strlen(argv[1]) - 4), ".cub", 4))
+		return (write(2, "Invalid arguments\n", 19));
 	c3d = initializer(open(argv[1], O_RDONLY));
+	if (!c3d.is_valid)
+		return(1);
 	mlx_hook(c3d.mlxgraph.win, 2, 1L << 0, move, &c3d.player);
 	mlx_hook(c3d.mlxgraph.win, 3, 1L << 1, unmove, &c3d.player);
 	mlx_loop_hook(c3d.mlxgraph.mlx, main_loop, &c3d);
 	mlx_loop(c3d.mlxgraph.mlx);
+	return(0);
 }
