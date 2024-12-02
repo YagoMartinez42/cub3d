@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:32 by samartin          #+#    #+#             */
-/*   Updated: 2024/12/02 08:08:46 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/12/02 12:29:52 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <math.h>
 # include <inttypes.h>
 # include "../libft/include/libft.h"
+# include "error_management.h"
 # include "graphics.h"
 # include "map.h"
 # include "player.h"
@@ -36,6 +37,7 @@ typedef struct s_cub3d
 {
 	t_mlxgrph	mlxgraph;
 	t_player	player;
+	uint8_t		is_valid;
 }				t_cub3d;
 
 #endif

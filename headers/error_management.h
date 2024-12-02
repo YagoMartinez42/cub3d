@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 14:28:10 by samartin          #+#    #+#             */
-/*   Updated: 2024/11/20 15:35:27 by samartin         ###   ########.fr       */
+/*   Updated: 2024/12/02 12:32:48 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 int8_t	c3d_errors(int8_t code);
 void	c3d_fatal_errors(int8_t code);
-void	c3d_close_n_exit(t_mlx *mlx, int8_t code);
+void	c3d_close_n_exit(void *mlx, int8_t code);
 
 #endif

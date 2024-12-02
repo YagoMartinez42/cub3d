@@ -17,6 +17,9 @@ SRC		:= main.c \
 			read_header.c\
 			read_map.c\
 			parsing_matrix_utils.c\
+			player_new.c\
+			player_init_utils.c\
+			validate_map.c\
 			error_management.c\
 
 OBJ		:= ${SRC:.c=.o}
