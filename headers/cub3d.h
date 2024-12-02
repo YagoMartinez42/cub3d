@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:32 by samartin          #+#    #+#             */
-/*   Updated: 2024/11/29 13:46:07 by samartin         ###   ########.fr       */
+/*   Updated: 2024/12/02 08:08:46 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,4 @@ typedef struct s_cub3d
 	t_player	player;
 }				t_cub3d;
 
-float	launch_ray(t_cub3d c3d, float angle);
 #endif

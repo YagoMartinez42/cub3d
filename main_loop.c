@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:31:39 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/11/27 22:02:20 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/12/02 08:18:37 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,13 @@ int	main_loop(void *c3d)
 	float		pixel_angle;
 
 	cub3d = c3d;
-	cub3d = c3d;
 	move_player(&cub3d->player);
 	j = 0;
 	i = -(FOV) / 2;
 	pixel_angle = FOV / WINW;
 	while (j < WINW)
 	{
-		k = launch_ray(*cub3d, cub3d->player.aov - (i * (M_PI / 180)));
+		k = launch_ray(&cub3d->player, cub3d->player.aov - (i * (M_PI / 180)));
 		i += pixel_angle;
 		drawline(c3d, j, k);
 		j++;
