@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:18:21 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/12/03 10:36:52 by samartin         ###   ########.fr       */
+/*   Updated: 2024/12/03 12:58:38 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ t_mlxgrph	init_graphics(void)
 	result.mlx = mlx;
 	result.win = win;
 	result.scrnbuff = scrnbuff;
-
 	mlx_hook(win, 17, 1L << 17, exit_game, result.mlx);
 	return (result);
 }
@@ -55,7 +54,7 @@ t_cub3d	initializer(int fd)
 	if (!(result.mlxgraph.mlx))
 	{
 		write(2, "Could not init MiniLibX\n", 24);
-		return(result);
+		return (result);
 	}
 	result.player = init_player(fd, result.mlxgraph.mlx);
 	if (result.player.map.map_matrix)
@@ -71,10 +70,10 @@ int	main(int argc, char *argv[])
 		return (write(2, "Invalid arguments\n", 19));
 	c3d = initializer(open(argv[1], O_RDONLY));
 	if (!c3d.is_valid)
-		return(1);
+		return (1);
 	mlx_hook(c3d.mlxgraph.win, 2, 1L << 0, move, &c3d.player);
 	mlx_hook(c3d.mlxgraph.win, 3, 1L << 1, unmove, &c3d.player);
 	mlx_loop_hook(c3d.mlxgraph.mlx, main_loop, &c3d);
 	mlx_loop(c3d.mlxgraph.mlx);
-	return(0);
+	return (0);
 }

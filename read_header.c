@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 11:21:43 by samartin          #+#    #+#             */
-/*   Updated: 2024/11/21 16:03:05 by samartin         ###   ########.fr       */
+/*   Updated: 2024/12/03 13:01:48 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,8 +153,8 @@ static uint8_t	c3d_assign_colors(t_map *map, char **header)
  */
 uint8_t	c3d_read_header(int fd, t_map *map, t_mlx *mlx)
 {
-	char		*line;
-	char		*header[6];
+	char	*line;
+	char	*header[6];
 	uint8_t	line_flags;
 
 	line_flags = 0;

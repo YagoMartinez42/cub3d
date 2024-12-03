@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 12:40:43 by samartin          #+#    #+#             */
-/*   Updated: 2024/12/03 10:56:22 by samartin         ###   ########.fr       */
+/*   Updated: 2024/12/03 13:02:30 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static uint8_t	c3d_full_map_check(char **map, size_t x, size_t y, size_t *wh)
 			if (map[y][x] == '0')
 			{
 				if (c3d_flood_check(map, x, y, wh))
-					return(1);
+					return (1);
 			}
 			x++;
 		}

@@ -6,17 +6,29 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:28:43 by samartin          #+#    #+#             */
-/*   Updated: 2024/11/28 17:16:57 by samartin         ###   ########.fr       */
+/*   Updated: 2024/12/03 12:57:04 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/graphics.h"
 
+static float	set_wall_pixel(t_texture buffer, t_texture_column tcol,
+	int offset,	float vpoint)
+{
+	int		tex_offset;
+	float	v_increase;
+
+	tex_offset = ((int)(tcol.wall_point * tcol.texture->wd) * BPP)
+		+ (tcol.texture->wd * (int)(vpoint * tcol.texture->ht) * BPP);
+	*(int *)(buffer.addr + offset) = *(int *)(tcol.texture->addr
+			+ tex_offset);
+	return (v_increase);
+}
+
 void	print_column(t_texture buffer, t_texture_column tcol, int size)
 {
 	int		y;
 	int		offset;
-	int		tex_offset;
 	float	vpoint;
 
 	if (size > buffer.ht)
@@ -33,11 +45,9 @@ void	print_column(t_texture buffer, t_texture_column tcol, int size)
 			*(int *)(buffer.addr + offset) = tcol.floor_color;
 		else
 		{
-			tex_offset = ((int)(tcol.wall_point * tcol.texture->wd) * BPP) + (tcol.texture->wd * (int)(vpoint * tcol.texture->ht) * BPP);
-			*(int *)(buffer.addr + offset) = *(int *)(tcol.texture->addr + tex_offset);
+			set_wall_pixel(buffer, tcol, offset, vpoint);
 			vpoint += (1 / tcol.texture->ht) * (buffer.ht / size);
 		}
-printf("y = %d; offset = %d; tex_offset = %d; vpoint = %f\n", y, offset, tex_offset, vpoint);
 		y++;
 	}
 }
