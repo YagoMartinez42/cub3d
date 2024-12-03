@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 20:17:07 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/11/26 13:59:04bvelasco         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:03:00 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	detect_colision(float y, float x, t_map map)
 	const int	xint = x;
 	const int	yint = y;
 
-	if (map.map_matrix[yint][xint] == '1')
+	if (((x == 0 || x >= map.map_size[0]) || (y == 0 || y >= map.map_size[1]))
+		|| map.map_matrix[yint][xint] == '1')
 		return (1);
 	return (0);
 }
