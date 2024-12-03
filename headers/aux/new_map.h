@@ -3,28 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   new_map.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 13:10:40 by samartin          #+#    #+#             */
-/*   Updated: 2024/11/19 11:40:23 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/12/02 15:26:49 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef NEW_MAP_H
 # define NEW_MAP_H
 
-__uint8_t	c3d_read_header(int fd, t_map *map, t_mlx *mlx);
-__uint8_t	c3d_read_map(int fd, t_map *map);
-__uint8_t	c3d_validate_map(char **map_matrix);
+uint8_t	c3d_read_header(int fd, t_map *map, t_mlx *mlx);
+uint8_t	c3d_read_map(int fd, t_map *map);
+uint8_t	c3d_validate_map(t_map *map);
 
 //Matrix utils
-__uint8_t	c3d_matrix_health_3(char **matrix);
-__uint8_t	c3d_clear_header(char **header);
-__uint8_t	c3d_free2d(char **array_of_str);
-void		c3d_cpynfill(char *dest, char *src, size_t full_l);
+uint8_t	c3d_matrix_health_3(char **matrix);
+uint8_t	c3d_clear_header(char **header);
+uint8_t	c3d_free2d(char **array_of_str);
+uint8_t	c3d_free2d_size(char **matrix, int size);
+void	c3d_cpynfill(char *dest, char *src, size_t full_l);
+float	c3d_get_player_pos(char **map, size_t w, size_t h, float *player_pos);
 
 //Error management
-__int8_t	c3d_errors(__int8_t code);
-void		c3d_fatal_errors(__int8_t code);
+int8_t	c3d_errors(int8_t code);
+void	c3d_fatal_errors(int8_t code);
 
 #endif

@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_map.c                                          :+:      :+:    :+:   */
+/*   player_new.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/12 15:04:26 by samartin          #+#    #+#             */
-/*   Updated: 2024/12/02 21:02:09 by samartin         ###   ########.fr       */
+/*   Created: 2024/10/23 13:43:08 by samartin          #+#    #+#             */
+/*   Updated: 2024/12/03 13:00:40 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/cub3d.h"
 #include "headers/aux/new_map.h"
 
-t_map	new_map(int map_fd, t_mlx *mlx)
+t_player	init_player(int fd, void *mlxptr)
 {
-	t_map	map;
+	t_player	player;
 
-	if (c3d_read_header(map_fd, &map, mlx))
-		map.map_matrix = NULL;
-	else if (c3d_read_map(map_fd, &map))
+	player.map = new_map(fd, mlxptr);
+	if (!(player.map.map_matrix))
+		c3d_close_n_exit(mlxptr, 4);
+	player.aov = c3d_get_player_pos(player.map.map_matrix, \
+		player.map.map_size[0], player.map.map_size[1], player.coords);
+	if (player.aov < 0)
 	{
-		if (map.map_matrix)
-		{
-			c3d_free2d(map.map_matrix);
-			map.map_matrix = NULL;
-		}
-		map.map_matrix = NULL;
+		c3d_free2d_size(player.map.map_matrix, player.map.map_size[1]);
+		player.map.map_matrix = NULL;
 	}
-	else if (c3d_validate_map(&map))
-		map.map_matrix = NULL;
-	return (map);
+	player.xmov = 0;
+	player.ymov = 0;
+	player.rotate = 0;
+	return (player);
 }
