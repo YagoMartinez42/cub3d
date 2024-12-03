@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:18:21 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/12/02 13:56:58 by samartin         ###   ########.fr       */
+/*   Updated: 2024/12/03 10:36:52 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,36 +16,6 @@ int	exit_game(void *mlx)
 {
 	(void) mlx;
 	exit (0);
-}
-
-void test_struct(t_map *map, t_mlxgrph *c3dmlx) //WORNING!! KILL THIS!!
-{
-	size_t	i;
-	size_t	j;
-
-	ft_printf("Struct contents:\n\n");
-	ft_printf("Map size: %u x %u\n", map->map_size[0], map->map_size[1]);
-	ft_printf("Floor Color: %u\n", map->floor_color);
-	ft_printf("Ceiling Color: %u\n", map->ceil_color);
-	i = 0;
-	while (i < 4)
-	{
-		mlx_put_image_to_window(c3dmlx->mlx, c3dmlx->win, (map->walls[i]).img, i * 300, 0);
-		i++;
-	}
-	ft_printf("Map:\n");
-	i = 0;
-	while (i < map->map_size[1])
-	{
-		j = 0;
-		while (j < map->map_size[0])
-		{
-			write(1, &map->map_matrix[i][j], 1);
-			j++;
-		}
-			write(1, "|\n", 2);
-		i++;
-	}
 }
 
 t_mlxgrph	init_graphics(void)
@@ -102,7 +72,6 @@ int	main(int argc, char *argv[])
 	c3d = initializer(open(argv[1], O_RDONLY));
 	if (!c3d.is_valid)
 		return(1);
-test_struct(&c3d.player.map, &c3d.mlxgraph);
 	mlx_hook(c3d.mlxgraph.win, 2, 1L << 0, move, &c3d.player);
 	mlx_hook(c3d.mlxgraph.win, 3, 1L << 1, unmove, &c3d.player);
 	mlx_loop_hook(c3d.mlxgraph.mlx, main_loop, &c3d);

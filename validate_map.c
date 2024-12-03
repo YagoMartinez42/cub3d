@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 12:40:43 by samartin          #+#    #+#             */
-/*   Updated: 2024/12/02 20:54:59 by samartin         ###   ########.fr       */
+/*   Updated: 2024/12/03 10:56:22 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,32 +54,11 @@ static uint8_t	c3d_flood_check(char **map, size_t x, size_t y, size_t *wh)
 	return (0);
 }
 
-void printtheFmap(char **map, size_t x, size_t y) //WORNING!! KILL THIS!!
-{
-	size_t	i;
-	size_t	j;
-
-	ft_printf("Map size: %u x %u\n", x, y);
-	i = 0;
-	while (i < y)
-	{
-		j = 0;
-		while (j < x)
-		{
-			write(1, &map[i][j], 1);
-			j++;
-		}
-			write(1, "|\n", 2);
-		i++;
-	}
-}
-
 static uint8_t	c3d_full_map_check(char **map, size_t x, size_t y, size_t *wh)
 {
 	uint8_t	ret;
 
 	ret = c3d_flood_check(map, x, y, wh);
-printtheFmap(map, wh[0], wh[1]);
 	if (ret)
 		return (ret);
 	y = 0;
