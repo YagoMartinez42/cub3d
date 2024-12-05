@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 12:40:43 by samartin          #+#    #+#             */
-/*   Updated: 2024/12/03 13:02:30 by samartin         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:27:54 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,28 @@ static char	**c3d_dup_map(t_map *map)
 	char	**map_cpy;
 	size_t	pos[2];
 
-	pos[0] = 0;
-	map_cpy = malloc(map->map_size[1] * sizeof(char *));
-	while (pos[0] < map->map_size[1])
+
+	if (!map || !map->map_matrix)
+		exit(8);
+	pos[Y] = 0;
+	map_cpy = malloc(map->map_size[Y] * sizeof(char *));
+	while (pos[Y] < map->map_size[Y])
 	{
-		map_cpy[pos[0]] = malloc(map->map_size[0] * sizeof(char));
-		pos[1] = 0;
-		while (pos[1] < map->map_size[0])
+		map_cpy[pos[Y]] = malloc(map->map_size[X] * sizeof(char));
+		pos[X] = 0;
+		while (pos[X] < map->map_size[X])
 		{
-			map_cpy[pos[0]][pos[1]] = map->map_matrix[pos[0]][pos[1]];
-			pos[1]++;
+			map_cpy[pos[Y]][pos[X]] = map->map_matrix[pos[Y]][pos[X]];
+			pos[X]++;
 		}
-		pos[0]++;
+		pos[Y]++;
 	}
 	return (map_cpy);
 }
 
 static uint8_t	c3d_flood_check(char **map, size_t x, size_t y, size_t *wh)
 {
-	if (y < 0 || y >= wh[1] || x < 0 || x >= wh[0])
+	if (y < 0 || y >= wh[Y] || x < 0 || x >= wh[X])
 		return (1);
 	else if (ft_strchr("1F", map[y][x]))
 		return (0);
@@ -62,10 +65,10 @@ static uint8_t	c3d_full_map_check(char **map, size_t x, size_t y, size_t *wh)
 	if (ret)
 		return (ret);
 	y = 0;
-	while (y < wh[1])
+	while (y < wh[Y])
 	{
 		x = 0;
-		while (x < wh[0])
+		while (x < wh[X])
 		{
 			if (map[y][x] == '0')
 			{
@@ -89,15 +92,15 @@ uint8_t	c3d_validate_map(t_map *map)
 	map_cpy = c3d_dup_map(map);
 	if (!map_cpy)
 		return (1);
-	c3d_get_player_pos(map->map_matrix, map->map_size[0], map->map_size[1],
+	c3d_get_player_pos(map->map_matrix, map->map_size[X], map->map_size[Y],
 		plposf);
-	if (plposf[0] < 0)
-		return (c3d_free2d_size(map_cpy, map->map_size[1]));
-	plpos[0] = (size_t)plposf[0];
-	plpos[1] = (size_t)plposf[1];
-	map_cpy[plpos[1]][plpos[0]] = '0';
-	ret = c3d_full_map_check(map_cpy, plpos[0], plpos[1], map->map_size);
-	c3d_free2d_size(map_cpy, map->map_size[1]);
+	if (plposf[X] < 0)
+		return (c3d_free2d_size(map_cpy, map->map_size[Y]));
+	plpos[X] = (size_t)plposf[X];
+	plpos[Y] = (size_t)plposf[Y];
+	map_cpy[plpos[Y]][plpos[X]] = '0';
+	ret = c3d_full_map_check(map_cpy, plpos[X], plpos[Y], map->map_size);
+	c3d_free2d_size(map_cpy, map->map_size[Y]);
 	if (ret)
 		return (1);
 	return (0);

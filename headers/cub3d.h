@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:32 by samartin          #+#    #+#             */
-/*   Updated: 2024/12/02 12:29:52 by samartin         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:32:35 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 # include "map.h"
 # include "player.h"
 # ifndef WINW
-#  define WINW 800
+#  define WINW 1280
 # endif
 # ifndef WINH
-#  define WINH 600
+#  define WINH 720
 # endif
 # ifndef BPP
 #  define BPP 4
@@ -39,5 +39,11 @@ typedef struct s_cub3d
 	t_player	player;
 	uint8_t		is_valid;
 }				t_cub3d;
+
+typedef enum	s_coords
+{
+	X,
+	Y
+}				t_coords;
 
 #endif

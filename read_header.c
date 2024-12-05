@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 11:21:43 by samartin          #+#    #+#             */
-/*   Updated: 2024/12/03 13:01:48 by samartin         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:56:53 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,26 +51,26 @@ static char	**c3d_populate_kw(void)
 static uint8_t	c3d_add_line(char *line, char **header, uint8_t l_flags)
 {
 	char	**kwords;
-	int		i;
+	int		y;
 
-	i = 0;
+	y = 0;
 	kwords = c3d_populate_kw();
 	line = ft_strtrim(line, " \t\v\n\r\f");
-	while (kwords[i])
+	while (kwords[y])
 	{
-		if (!ft_strncmp(line, kwords[i], 3) || \
-			((!ft_strncmp(line, kwords[i], 2) && i > 3)))
+		if (!ft_strncmp(line, kwords[y], 3) || \
+			((!ft_strncmp(line, kwords[y], 2) && y > 3)))
 		{
-			if ((1 << i) & l_flags)
+			if ((1 << y) & l_flags)
 			{
 				free(line);
 				return (c3d_free2d(kwords), c3d_clear_header(header));
 			}
-			header[i] = ft_strtrim(line + 2, " \t\v\n\r\f");
+			header[y] = ft_strtrim(line + 2, " \t\v\n\r\f");
 			free(line);
-			return (c3d_free2d(kwords), 1 << i);
+			return (c3d_free2d(kwords), 1 << y);
 		}
-		i++;
+		y++;
 	}
 	if (*line != '\0')
 		return (free(line), c3d_free2d(kwords), c3d_clear_header(header));
