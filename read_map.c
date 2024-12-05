@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 11:23:38 by samartin          #+#    #+#             */
-/*   Updated: 2024/11/21 16:03:34 by samartin         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:04:27 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,16 @@ t_map	*c3d_map_list_to_matrix(t_map *map, t_list *map_as_list)
 	size_t	i;
 	t_list	*node;
 
-	map->map_size[1] = ft_lstsize(map_as_list);
-	map->map_matrix = malloc(map->map_size[1] * sizeof(char *));
+	map->map_size[Y] = ft_lstsize(map_as_list);
+	map->map_matrix = malloc(map->map_size[Y] * sizeof(char *));
 	if (!(map->map_matrix))
 		c3d_fatal_errors(1);
 	i = 0;
 	node = map_as_list;
-	while (i < map->map_size[1])
+	while (i < map->map_size[Y])
 	{
-		map->map_matrix[i] = malloc((map->map_size[0] + 1) * sizeof(char *));
-		c3d_cpynfill(map->map_matrix[i], node->content.str, map->map_size[0]);
+		map->map_matrix[i] = malloc((map->map_size[X] + 1) * sizeof(char *));
+		c3d_cpynfill(map->map_matrix[i], node->content.str, map->map_size[X]);
 		i++;
 		node = node->next;
 	}
@@ -96,8 +96,8 @@ static void	c3d_set_width(char *line, size_t *map_size)
 		line[line_len - 1] = '\0';
 		line_len--;
 	}
-	if (line_len > map_size[0])
-		map_size[0] = line_len;
+	if (line_len > map_size[X])
+		map_size[X] = line_len;
 }
 
 /**
@@ -117,7 +117,7 @@ uint8_t	c3d_read_map(int fd, t_map *map)
 	t_list	*map_as_list;
 	t_list	*node;
 
-	map->map_size[0] = 0;
+	map->map_size[X] = 0;
 	map_as_list = NULL;
 	line = get_next_line(fd);
 	while (!ft_strncmp(c3d_skip_ws(line), "", 1))
