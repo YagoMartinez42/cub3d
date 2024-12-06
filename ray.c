@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 20:17:07 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/12/03 13:10:21 by samartin         ###   ########.fr       */
+/*   Updated: 2024/12/06 17:23:04 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ float	launch_ray(t_player *player, float angle)
 	float	distance;
 	float	stepsize;
 
-	stepsize = 0.005f;
+	stepsize = 1;
 	if (angle < 0)
 		angle += M_PI * 2;
 	distance = 0;
