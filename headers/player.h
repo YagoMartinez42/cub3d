@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:26 by samartin          #+#    #+#             */
-/*   Updated: 2024/12/05 16:33:57 by samartin         ###   ########.fr       */
+/*   Updated: 2024/12/09 14:10:55 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ float		launch_ray(t_player *player, float angle);
 int			move(int keycode, void *param);
 int			unmove(int keycode, void *param);
 int			main_loop(void *c3d);
-int			detect_colision(float y, float x, t_map map);
+int			detect_colision(float y, float x, t_map *map);
 t_player	init_player(int fd, void *mlxptr);
 
 #endif

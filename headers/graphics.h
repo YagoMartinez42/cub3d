@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 13:55:00 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/11/24 15:11:15 by samartin         ###   ########.fr       */
+/*   Updated: 2024/12/09 14:03:16 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,6 @@ typedef struct s_texture_column
 
 t_mlxgrph	*mlxgrph_new(void *mlx);
 void		destroy_window(t_mlxgrph *this);
-void		scrnbuff_pixel_put(t_texture *texture, int x, int y, int color);
+void		ft_image_pixel_put(t_texture *texture, int x, int y, int color);
 void		print_column(t_texture buffer, t_texture_column tcol, int size);
 #endif

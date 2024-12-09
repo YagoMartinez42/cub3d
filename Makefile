@@ -9,7 +9,7 @@ LIBFT	:= libft/lib/libft.a
 LFTDIR	:= libft
 RM		:= rm -rf
 SRC		:= main.c \
-			scrnbuffer.c\
+			image_interface.c\
 			user_input.c\
 			main_loop.c\
 			new_map.c\
