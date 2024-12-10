@@ -70,7 +70,6 @@ int	main_loop(void *c3d)
 	int			j;
 	float		k;
 	float		pixel_angle;
-	t_colpoint	colpoint;
 
 	cub3d = c3d;
 	move_player(&cub3d->player);
@@ -79,7 +78,7 @@ int	main_loop(void *c3d)
 	pixel_angle = FOV / WINW;
 	while (j < WINW)
 	{
-		k = launch_ray(&cub3d->player, cub3d->player.aov - (i * (M_PI / 180)), &colpoint);
+		k = launch_ray(&cub3d->player, cub3d->player.aov - (i * (M_PI / 180)));
 		i += pixel_angle;
 		drawline(c3d, j, k);
 		j++;
