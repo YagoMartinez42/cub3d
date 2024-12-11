@@ -33,6 +33,8 @@ t_mlxgrph	init_graphics(void)
 	scrnbuff->img = img;
 	scrnbuff->addr = (int *)mlx_get_data_addr(img, &scrnbuff->bits_per_pixel,
 			&scrnbuff->line_length, &scrnbuff->endian);
+	scrnbuff->wd = WINW;
+	scrnbuff->ht = WINH;
 	result.mlx = mlx;
 	result.win = win;
 	result.scrnbuff = scrnbuff;

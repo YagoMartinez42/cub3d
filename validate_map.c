@@ -39,7 +39,7 @@ static char	**c3d_dup_map(t_map *map)
 
 static uint8_t	c3d_flood_check(char **map, size_t x, size_t y, size_t *wh)
 {
-	if (y < 0 || y >= wh[Y] || x < 0 || x >= wh[X])
+	if (y >= wh[Y] || x >= wh[X])
 		return (1);
 	else if (ft_strchr("1F", map[y][x]))
 		return (0);

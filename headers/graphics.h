@@ -76,6 +76,7 @@ typedef struct s_texture_column
 }				t_texture_column;
 
 t_mlxgrph	*mlxgrph_new(void *mlx);
+t_texture	*new_texture(void *c3d, int width, int height);
 void		destroy_window(t_mlxgrph *this);
 void		ft_image_pixel_put(t_texture *texture, int x, int y, int color);
 void		print_column(t_texture buffer, t_texture_column tcol, int size);
