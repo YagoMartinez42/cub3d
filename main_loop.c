@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:31:39 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/12/09 14:03:39 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/12/11 18:03:45 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,18 @@ int	main_loop(void *c3d)
 	j = 0;
 	i = -(FOV) / 2;
 	pixel_angle = FOV / WINW;
+	print_minimap(&cub3d->player.map, cub3d->mlxgraph.minimap);
 	while (j < WINW)
 	{
-		k = launch_ray(&cub3d->player, cub3d->player.aov - (i * (M_PI / 180)));
+		k = launch_ray(&cub3d->player, cub3d->player.aov - (i * (M_PI / 180)),
+				cub3d->mlxgraph.minimap);
 		i += pixel_angle;
 		drawline(c3d, j, k);
 		j++;
 	}
 	mlx_put_image_to_window(cub3d->mlxgraph.mlx, cub3d->mlxgraph.win,
 		cub3d->mlxgraph.scrnbuff->img, 0, 0);
+	mlx_put_image_to_window(cub3d->mlxgraph.mlx, cub3d->mlxgraph.win,
+		cub3d->mlxgraph.minimap->texture->img, 0, 0);
 	return (0);
 }

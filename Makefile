@@ -20,6 +20,7 @@ SRC		:= main.c \
 			player_new.c\
 			player_init_utils.c\
 			validate_map.c\
+			minimap.c\
 			error_management.c
 
 OBJ		:= ${SRC:.c=.o}

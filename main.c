@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:18:21 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/12/03 12:58:38 by samartin         ###   ########.fr       */
+/*   Updated: 2024/12/11 17:24:07 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int	main(int argc, char *argv[])
 	if (argc != 2 || ft_strncmp((argv[1] + ft_strlen(argv[1]) - 4), ".cub", 4))
 		return (write(2, "Invalid arguments\n", 19));
 	c3d = initializer(open(argv[1], O_RDONLY));
+	c3d.mlxgraph.minimap = new_minimap(&c3d);
 	if (!c3d.is_valid)
 		return (1);
 	mlx_hook(c3d.mlxgraph.win, 2, 1L << 0, move, &c3d.player);

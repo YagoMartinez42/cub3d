@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:46:18 by samartin          #+#    #+#             */
-/*   Updated: 2024/11/20 15:33:12 by samartin         ###   ########.fr       */
+/*   Updated: 2024/12/11 17:37:17 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_map
 	char		**map_matrix;
 }	t_map;
 
+void	print_minimap(t_map *map, t_minimap *minimap);
 t_map	new_map(int map_fd, t_mlx *mlx);
 void	destroy_map(t_map *this);
 #endif
