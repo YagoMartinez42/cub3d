@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 12:40:43 by samartin          #+#    #+#             */
-/*   Updated: 2024/12/05 16:27:54 by samartin         ###   ########.fr       */
+/*   Updated: 2024/12/11 18:04:00 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static char	**c3d_dup_map(t_map *map)
 {
 	char	**map_cpy;
 	size_t	pos[2];
-
 
 	if (!map || !map->map_matrix)
 		exit(8);
@@ -39,7 +38,7 @@ static char	**c3d_dup_map(t_map *map)
 
 static uint8_t	c3d_flood_check(char **map, size_t x, size_t y, size_t *wh)
 {
-	if (y < 0 || y >= wh[Y] || x < 0 || x >= wh[X])
+	if (y >= wh[Y] || x >= wh[X])
 		return (1);
 	else if (ft_strchr("1F", map[y][x]))
 		return (0);

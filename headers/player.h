@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:26 by samartin          #+#    #+#             */
-/*   Updated: 2024/12/05 16:33:57 by samartin         ###   ########.fr       */
+/*   Updated: 2024/12/11 17:39:36 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ typedef struct s_player
 	int		rotate;
 }				t_player;
 
-float		launch_ray(t_player *player, float angle);
+float		launch_ray(t_player *player, float angle, t_minimap *minimap);
 int			move(int keycode, void *param);
 int			unmove(int keycode, void *param);
 int			main_loop(void *c3d);
-int			detect_colision(float y, float x, t_map map);
+int			detect_colision(float y, float x, t_map *map);
 t_player	init_player(int fd, void *mlxptr);
 
 #endif

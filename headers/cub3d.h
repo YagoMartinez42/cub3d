@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:32 by samartin          #+#    #+#             */
-/*   Updated: 2024/12/05 16:32:35 by samartin         ###   ########.fr       */
+/*   Updated: 2024/12/06 23:09:17 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,16 @@
 #  define BPP 4
 # endif
 
+enum	e_direction
+{
+	X,
+	Y
+};
 typedef struct s_cub3d
 {
 	t_mlxgrph	mlxgraph;
 	t_player	player;
 	uint8_t		is_valid;
 }				t_cub3d;
-
-typedef enum	s_coords
-{
-	X,
-	Y
-}				t_coords;
 
 #endif
