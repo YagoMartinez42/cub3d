@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:31:39 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/12/11 18:03:45 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/12/29 13:45:42 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 static void	move_player(t_player *player)
 {
 	if (!detect_colision((player->coords[1]
-				+ player->xmov * VEL * cosf(player->aov + M_PI_2))
+				+ player->xmov * VEL * sinf(player->aov + M_PI_2))
 			, (player->coords[0] + player->xmov * VEL
-				* sinf(player->aov + M_PI_2)), &player->map))
+				* cosf(player->aov + M_PI_2)), &player->map))
 	{
-		player->coords[0] += player->xmov * VEL * sinf(player->aov + M_PI_2);
-		player->coords[1] += player->xmov * VEL * cosf(player->aov + M_PI_2);
+		player->coords[0] += player->xmov * VEL * cosf(player->aov + M_PI_2);
+		player->coords[1] += player->xmov * VEL * sinf(player->aov + M_PI_2);
 	}
 	if (!detect_colision((player->coords[1]
-				+ player->ymov * VEL * cosf(player->aov + M_PI))
+				+ player->ymov * VEL * sinf(player->aov + M_PI))
 			, (player->coords[0] + player->ymov * VEL
-				* sinf(player->aov + M_PI)), &player->map))
+				* cosf(player->aov + M_PI)), &player->map))
 	{
-		player->coords[0] += player->ymov * VEL * sinf(player->aov + M_PI);
-		player->coords[1] += player->ymov * VEL * cosf(player->aov + M_PI);
+		player->coords[0] += player->ymov * VEL * cosf(player->aov + M_PI);
+		player->coords[1] += player->ymov * VEL * sinf(player->aov + M_PI);
 	}
 	player->aov += (player->rotate * (M_PI / 180)) * VEL * 20;
 	return ;
@@ -58,7 +58,7 @@ void	drawline(void *c3d, int j, float k)
 	h_2 = h / 2;
 	while (l < h_2)
 	{
-		ft_image_pixel_put(cub3d->mlxgraph.scrnbuff, j, WINH / 2 + l, 0x808080);
+		ft_image_pixel_put(cub3d->mlxgraph.scrnbuff, j, WINH / 2 + l, 0x8B8B8B);
 		l++;
 	}
 }
@@ -69,25 +69,24 @@ int	main_loop(void *c3d)
 	float		i;
 	int			j;
 	float		k;
-	float		pixel_angle;
 
 	cub3d = c3d;
 	move_player(&cub3d->player);
 	j = 0;
 	i = -(FOV) / 2;
-	pixel_angle = FOV / WINW;
 	print_minimap(&cub3d->player.map, cub3d->mlxgraph.minimap);
 	while (j < WINW)
 	{
 		k = launch_ray(&cub3d->player, cub3d->player.aov - (i * (M_PI / 180)),
 				cub3d->mlxgraph.minimap);
-		i += pixel_angle;
+		i += FOV / WINW;
 		drawline(c3d, j, k);
 		j++;
 	}
 	mlx_put_image_to_window(cub3d->mlxgraph.mlx, cub3d->mlxgraph.win,
 		cub3d->mlxgraph.scrnbuff->img, 0, 0);
-	mlx_put_image_to_window(cub3d->mlxgraph.mlx, cub3d->mlxgraph.win,
-		cub3d->mlxgraph.minimap->texture->img, 0, 0);
+	if (cub3d->player.minimap)
+		mlx_put_image_to_window(cub3d->mlxgraph.mlx, cub3d->mlxgraph.win,
+			cub3d->mlxgraph.minimap->texture->img, 0, 0);
 	return (0);
 }

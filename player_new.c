@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_new.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:43:08 by samartin          #+#    #+#             */
-/*   Updated: 2024/12/05 15:51:24 by samartin         ###   ########.fr       */
+/*   Updated: 2024/12/27 19:26:42 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ t_player	init_player(int fd, void *mlxptr)
 	player.xmov = 0;
 	player.ymov = 0;
 	player.rotate = 0;
+	player.minimap = 1;
 	return (player);
 }
