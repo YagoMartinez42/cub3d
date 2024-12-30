@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_init_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:24:00 by samartin          #+#    #+#             */
-/*   Updated: 2024/12/05 15:53:14 by samartin         ###   ########.fr       */
+/*   Updated: 2024/12/29 14:16:24 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ float	c3d_get_player_pos(char **map, size_t w, size_t h, float *player_pos)
 {
 	size_t			y;
 	size_t			x;
-	static char		*angle = "SENW";
+	static char		*angle = "ESWN";
 	char			*found;
 
 	y = 0;
