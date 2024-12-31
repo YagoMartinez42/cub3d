@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 16:49:34 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/12/11 18:03:15 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/12/29 13:46:14 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_minimap	*new_minimap(void *cub3d)
 	minimap = malloc(sizeof(t_minimap));
 	if (!minimap)
 		return (NULL);
-	minimap->size = 12;
+	minimap->size = WINH / map->map_size[Y] / 4;
 	width = map->map_size[X] * minimap->size;
 	height = map->map_size[Y] * minimap->size;
 	minimap->texture = new_texture(cub3d, width, height);

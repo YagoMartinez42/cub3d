@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:26 by samartin          #+#    #+#             */
-/*   Updated: 2024/12/11 17:39:36 by bvelasco         ###   ########.fr       */
+/*   Updated: 2024/12/27 19:25:03 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_player
 	int		xmov;
 	int		ymov;
 	int		rotate;
+	int8_t	minimap;
 }				t_player;
 
 float		launch_ray(t_player *player, float angle, t_minimap *minimap);
