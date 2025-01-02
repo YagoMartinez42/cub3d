@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 13:55:00 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/12/11 16:39:08 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/01/02 16:38:56by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,24 +73,18 @@ typedef struct s_mlxgrph
 	t_minimap	*minimap;
 }		t_mlxgrph;
 
-/*
- * Type texture column: Used to mark a single column of pixels inside a texture.
- * @var texture: t_texture from which to select the column.
- * @var column: Horizontal index of the column.
- */
-typedef struct s_texture_column
+
+typedef struct s_colpoint
 {
-	int			ray;
-	t_texture	*texture;
-	int32_t		floor_color;
-	int32_t		ceil_color;
-	float		wall_point;
-}				t_texture_column;
+	int		c_point;	
+	float	w_point;
+}				t_colpoint;
+
 
 t_mlxgrph	*mlxgrph_new(void *mlx);
 t_texture	*new_texture(void *c3d, int width, int height);
 t_minimap	*new_minimap(void *c3d);
 void		destroy_window(t_mlxgrph *this);
 void		ft_image_pixel_put(t_texture *texture, int x, int y, int color);
-void		print_column(t_texture buffer, t_texture_column tcol, int size);
+void		print_column(t_cub3d c3d , int size, t_colpoint cpoint);
 #endif

@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:31:39 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/12/29 13:45:42 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/01/02 17:14:02 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	main_loop(void *c3d)
 	while (j < WINW)
 	{
 		k = launch_ray(&cub3d->player, cub3d->player.aov - (i * (M_PI / 180)),
-				cub3d->mlxgraph.minimap);
+				cub3d->mlxgraph.minimap, NULL);
 		i += FOV / WINW;
 		drawline(c3d, j, k);
 		j++;
