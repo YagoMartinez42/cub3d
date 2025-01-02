@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 20:17:07 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/12/29 14:06:06 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/01/02 16:40:54 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ static float	calc_dist(float cord, float dir)
 	}
 	else
 	{
-		if (grid_pos < 0.001f)
-			return (0.001f);
+		if (grid_pos < 0.0001f)
+			return (0.0001f);
 		return (grid_pos);
 	}
 }
@@ -72,10 +72,12 @@ void	dda(float *crds, float angle, t_map *map, t_minimap *m_map)
 	}
 }
 
-float	launch_ray(t_player *player, float angle, t_minimap *map)
+float	launch_ray(t_player *player, float angle, t_minimap *map,
+			t_colpoint *colpoint)
 {
 	float	cp_cords[2];
 
+	(void) colpoint;
 	cp_cords[X] = player->coords[X] * map->size;
 	cp_cords[Y] = player->coords[Y] * map->size;
 	dda(cp_cords, angle, &player->map, map);

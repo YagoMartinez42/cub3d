@@ -6,12 +6,13 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:26 by samartin          #+#    #+#             */
-/*   Updated: 2024/12/27 19:25:03 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/01/02 16:39:28 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PLAYER_H
 # define PLAYER_H
+# include "cub3d.h"
 # ifndef FOV
 #  define FOV 60.0f
 # endif
@@ -42,7 +43,8 @@ typedef struct s_player
 	int8_t	minimap;
 }				t_player;
 
-float		launch_ray(t_player *player, float angle, t_minimap *minimap);
+float		launch_ray(t_player *player, float angle, t_minimap *minimap,
+				t_colpoint *colpoint);
 int			move(int keycode, void *param);
 int			unmove(int keycode, void *param);
 int			main_loop(void *c3d);
