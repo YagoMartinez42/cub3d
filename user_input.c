@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:35:07 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/12/29 12:59:23 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/01/02 18:37:27 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@ int	move(int keycode, void *param)
 
 	player = param;
 	if (keycode == 65361)
-		player->rotate = +1;
-	if (keycode == 65363)
 		player->rotate = -1;
+	if (keycode == 65363)
+		player->rotate = +1;
 	if (keycode == 100)
-		player->xmov -= 1;
+		player->xmov = 1;
 	if (keycode == 97)
-		player->xmov += 1;
+		player->xmov = -1;
 	if (keycode == 115)
-		player->ymov += 1;
+		player->ymov = 1;
 	if (keycode == 119)
-		player->ymov -= 1;
-	if (keycode == 32)
+		player->ymov = -1;
+	if (keycode == 109)
 	{
 		if (player->minimap)
 			player->minimap = 0;
@@ -49,12 +49,12 @@ int	unmove(int keycode, void *param)
 	if (keycode == 65363)
 		player->rotate = 0;
 	if (keycode == 100)
-		player->xmov += 1;
+		player->xmov = 0;
 	if (keycode == 97)
-		player->xmov -= 1;
+		player->xmov = 0;
 	if (keycode == 115)
-		player->ymov -= 1;
+		player->ymov = 0;
 	if (keycode == 119 && player->ymov < 0)
-		player->ymov += 1;
+		player->ymov = 0;
 	return (0);
 }
