@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:32 by samartin          #+#    #+#             */
-/*   Updated: 2024/12/06 23:09:17 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/01/03 22:19:51 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdio.h>
-# include <mlx.h>
+# include "../minilibx-linux/mlx.h"
 # include <math.h>
 # include <inttypes.h>
 # include "../libft/include/libft.h"
