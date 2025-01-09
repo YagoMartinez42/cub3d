@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 16:49:34 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/12/29 13:46:14 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/01/09 12:07:46 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_minimap(t_map *map, t_minimap *minimap)
 		while (j < minimap->texture->wd)
 		{
 			if (map->map_matrix[i / minimap->size][j / minimap->size] == ' ')
-				ft_image_pixel_put(minimap->texture, j, i, 0x00 << 24);
+				ft_image_pixel_put(minimap->texture, j, i, 0x333333);
 			else if (map->map_matrix[i / minimap->size]
 				[j / minimap->size] == '1')
 				ft_image_pixel_put(minimap->texture, j, i, 0x633300);
