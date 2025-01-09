@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:31:39 by bvelasco          #+#    #+#             */
-/*   Updated: 2025/01/02 18:32:05 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:58:05 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	drawline(void *c3d, int j, float k)
 	}
 }
 
-int	main_loop(void *c3d)
+int	game_loop(void *c3d)
 {
 	t_cub3d		*cub3d;
 	float		i;

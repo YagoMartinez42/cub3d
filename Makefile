@@ -28,8 +28,8 @@ OBJ		:= ${SRC:.c=.o}
 
 all: ${NAME}
 
-${NAME}: $(SUBMODULES) ${OBJ} ${MLXLIB} ${LIBFT}
-	${CC} -o $(NAME) ${OBJ} ${CFLAGS} ${LDFLAGS} ${MLXFLG} ${LIBFT_FLAG} 
+${NAME}: $(SUBMODULES) ${MLXLIB} ${LIBFT} $(OBJ)
+	${CC} $(CFLAGS) -o $(NAME) ${OBJ} ${CFLAGS} ${LDFLAGS} ${MLXFLG} ${LIBFT_FLAG} 
 
 $(SUBMODULES):
 	git submodule init && git submodule update
