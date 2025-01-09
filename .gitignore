@@ -30,3 +30,5 @@ tags
 *.a
 # Executable
 cub3d
+# Submodule
+.submodules
