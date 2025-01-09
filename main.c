@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:18:21 by bvelasco          #+#    #+#             */
-/*   Updated: 2024/12/11 17:24:07 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:58:15 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	main(int argc, char *argv[])
 		return (1);
 	mlx_hook(c3d.mlxgraph.win, 2, 1L << 0, move, &c3d.player);
 	mlx_hook(c3d.mlxgraph.win, 3, 1L << 1, unmove, &c3d.player);
-	mlx_loop_hook(c3d.mlxgraph.mlx, main_loop, &c3d);
+	mlx_loop_hook(c3d.mlxgraph.mlx, game_loop, &c3d);
 	mlx_loop(c3d.mlxgraph.mlx);
 	return (0);
 }
