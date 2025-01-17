@@ -11,7 +11,7 @@ RM		:= rm -rf
 SRC		:= main.c \
 			image_interface.c\
 			user_input.c\
-			main_loop.c\
+			game_loop.c\
 			new_map.c\
 			ray.c\
 			read_header.c\
