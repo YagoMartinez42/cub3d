@@ -1,6 +1,6 @@
 NAME	:= cub3d
 CC		:= cc
-CFLAGS	:= -Wall -Wextra -Werror -Iminilibx-linux
+CFLAGS	+= -Wall -Wextra -Werror -Iminilibx-linux
 MLXFLG	:= -lXext -lX11 -Lminilibx-linux -lmlx -lm
 MLXLIB	:= minilibx-linux/libmlx.a
 MLXDIR	:= minilibx-linux
@@ -52,5 +52,8 @@ fclean: clean
 	${RM} ${MLXLIB}
 
 re: fclean all
+
+debug: fclean $(SUBMODULES) $(MLXLIB) $(LIBFT)
+	@CFLAGS="$(CFLAGS) -g3" make -e all
 
 .PHONY:	all clean fclean re bonus
