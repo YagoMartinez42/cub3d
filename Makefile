@@ -22,21 +22,23 @@ SRC		:= main.c \
 			validate_map.c\
 			minimap.c\
 			error_management.c
+SUBMODULES := .submodules
 
 OBJ		:= ${SRC:.c=.o}
 
 all: ${NAME}
 
-${NAME}: submodules ${OBJ} ${MLXLIB} ${LIBFT}
-	${CC} -o $(NAME) ${OBJ} ${CFLAGS} ${LDFLAGS} ${MLXFLG} ${LIBFT_FLAG} 
+${NAME}: $(SUBMODULES) ${MLXLIB} ${LIBFT} $(OBJ)
+	${CC} $(CFLAGS) -o $(NAME) ${OBJ} ${CFLAGS} ${LDFLAGS} ${MLXFLG} ${LIBFT_FLAG} 
 
-submodules:
+$(SUBMODULES):
 	git submodule init && git submodule update
+	touch .submodules
 
-${MLXLIB}:	submodules
+${MLXLIB}:	$(SUBMODULES)
 	make -C ${MLXDIR}
 
-${LIBFT}:	submodules
+${LIBFT}:	$(SUBMODULES)
 	make -C ${LFTDIR}
 
 clean:
