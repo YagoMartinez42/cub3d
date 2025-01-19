@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:26 by samartin          #+#    #+#             */
-/*   Updated: 2025/01/09 14:58:33 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/01/19 15:55:59 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_player
 }				t_player;
 
 float		launch_ray(t_player *player, float angle, t_minimap *minimap,
-				t_colpoint *colpoint);
+				t_hitpoint *colpoint);
 int			move(int keycode, void *param);
 int			unmove(int keycode, void *param);
 int			game_loop(void *c3d);

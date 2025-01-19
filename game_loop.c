@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_loop.c                                        :+:      :+:    :+:   */
+/*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:31:39 by bvelasco          #+#    #+#             */
-/*   Updated: 2025/01/09 14:58:05 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/01/19 15:51:28 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	game_loop(void *c3d)
 	float		i;
 	int			j;
 	float		k;
+	t_hitpoint	col;
 
 	cub3d = c3d;
 	move_player(&cub3d->player);
@@ -78,7 +79,7 @@ int	game_loop(void *c3d)
 	while (j < WINW)
 	{
 		k = launch_ray(&cub3d->player, cub3d->player.aov - (i * (M_PI / 180)),
-				cub3d->mlxgraph.minimap, NULL);
+				cub3d->mlxgraph.minimap, &col);
 		i -= FOV / WINW;
 		drawline(c3d, j, k);
 		j++;

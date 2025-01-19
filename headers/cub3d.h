@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:32 by samartin          #+#    #+#             */
-/*   Updated: 2025/01/03 22:19:51 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/01/19 15:52:59 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
 # include "map.h"
 # include "player.h"
 # ifndef WINW
-#  define WINW 1280
+#  define WINW 960
 # endif
-# ifndef WINH
+# ifndef WINH 
 #  define WINH 720
 # endif
 # ifndef BPP
