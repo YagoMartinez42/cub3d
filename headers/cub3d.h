@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:32 by samartin          #+#    #+#             */
-/*   Updated: 2025/01/21 10:10:07 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/01/21 13:08:31 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@
 # ifndef BPP
 #  define BPP 4
 # endif
-# define NORT 0
+# define NORTH 0
 # define EAST 1
 # define SOUTH 2
-# define WEAST 3
+# define WEST 3
 
 enum	e_direction
 {
