@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:31:39 by bvelasco          #+#    #+#             */
-/*   Updated: 2025/01/19 15:51:28 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/01/21 09:52:55y bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	move_player(t_player *player)
 	return ;
 }
 
-void	drawline(void *c3d, int j, float k)
+void	drawline(void *c3d, int j, float k, int color)
 {
 	const t_cub3d	*cub3d = c3d;
 	float			h;
@@ -46,23 +46,34 @@ void	drawline(void *c3d, int j, float k)
 	h = roundf(WINH / k);
 	while (i < WINH / 2)
 	{
-		ft_image_pixel_put(cub3d->mlxgraph.scrnbuff, j, i, 0x87CEEB);
+		ft_image_pixel_put(cub3d->mlxgraph.scrnbuff, j, i, cub3d->player.map.ceil_color);
 		i++;
 	}
 	while (i < WINH)
 	{
-		ft_image_pixel_put(cub3d->mlxgraph.scrnbuff, j, i, 0xA0522D);
+		ft_image_pixel_put(cub3d->mlxgraph.scrnbuff, j, i, cub3d->player.map.floor_color);
 		i++;
 	}
 	l = -h / 2;
 	h_2 = h / 2;
 	while (l < h_2)
 	{
-		ft_image_pixel_put(cub3d->mlxgraph.scrnbuff, j, WINH / 2 + l, 0x8B8B8B);
+		ft_image_pixel_put(cub3d->mlxgraph.scrnbuff, j, WINH / 2 + l, color);
 		l++;
 	}
 }
-
+static int select_texture(t_hitpoint *hit)
+{
+	if (hit->wall_pos == NORT)
+		return (0xFF551B);
+	if (hit->wall_pos == EAST)
+		return (0x7D2181);
+	if (hit->wall_pos == SOUTH)
+		return (0x424632);
+	if (hit->wall_pos == WEAST)
+		return (0xD5303E);
+	return (0);
+}
 int	game_loop(void *c3d)
 {
 	t_cub3d		*cub3d;
@@ -81,7 +92,7 @@ int	game_loop(void *c3d)
 		k = launch_ray(&cub3d->player, cub3d->player.aov - (i * (M_PI / 180)),
 				cub3d->mlxgraph.minimap, &col);
 		i -= FOV / WINW;
-		drawline(c3d, j, k);
+		drawline(c3d, j, k, select_texture(&col));
 		j++;
 	}
 	mlx_put_image_to_window(cub3d->mlxgraph.mlx, cub3d->mlxgraph.win,

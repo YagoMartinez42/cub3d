@@ -78,6 +78,7 @@ typedef struct s_hitpoint
 {
 	int		hit_dir;	
 	float	w_point;
+	int		wall_pos;
 }				t_hitpoint;
 
 

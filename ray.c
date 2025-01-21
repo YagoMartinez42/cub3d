@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 20:17:07 by bvelasco          #+#    #+#             */
-/*   Updated: 2025/01/19 15:45:52 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/01/21 10:16:36by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ static void	dda(float *crds, t_map *map, t_minimap *m_map, t_hitpoint *ht)
 
 	cords_int[X] = crds[X];
 	cords_int[Y] = crds[Y];
-	while (!detect_colision(cords_int[Y]/ m_map->size, cords_int[X] / m_map->size, map))
+	while (!detect_colision(cords_int[Y] / m_map->size, cords_int[X] / m_map->size, map))
 	{
-		ft_image_pixel_put(m_map->texture, cords_int[X], cords_int[Y], 0xFFFFFF);
+		ft_image_pixel_put(m_map->texture, crds[X], crds[Y], 0xFFFFFF);
 		dists[X] = calc_dist(crds[X], trig[1]);
 		dists[Y] = calc_dist(crds[Y], trig[0]);
 		costs[X] = dists[X] / fabsf(trig[1]);
@@ -73,24 +73,40 @@ static void	dda(float *crds, t_map *map, t_minimap *m_map, t_hitpoint *ht)
 			continue ;
 		}
 		crds[Y] += dists[Y] * dir[Y];
-		crds[X] += dists[Y] / fabsf(trig[2]) * dir[X];
 		cords_int[Y] = crds[Y];
+		crds[X] += dists[Y] / fabsf(trig[2]) * dir[X];
 		ht->hit_dir = Y;
 	}
 }
 
 float	launch_ray(t_player *player, float angle, t_minimap *map,
-			t_hitpoint *colpoint)
+			t_hitpoint *hitpoint)
 {
 	float	cp_cords[3];
 
-	(void) colpoint;
 	cp_cords[X] = player->coords[X] * map->size;
 	cp_cords[Y] = player->coords[Y] * map->size;
 	cp_cords[2] = angle;
-	dda(cp_cords, &player->map, map, colpoint);
+	dda(cp_cords, &player->map, map, hitpoint);
 	cp_cords[X] = cp_cords[X] / (float)map->size;
 	cp_cords[Y] = cp_cords[Y] / map->size;
+	// can be a diferent function
+	if (hitpoint->hit_dir == X)
+	{
+		if (cp_cords[X] >= player->coords[X])
+			hitpoint->wall_pos = WEAST;
+		else
+			hitpoint->wall_pos = EAST;
+		hitpoint->w_point = cp_cords[Y];
+	}
+	else
+	{
+		if (cp_cords[Y] >= player->coords[Y])
+			hitpoint->wall_pos = SOUTH;
+		else
+			hitpoint->wall_pos = NORT;
+		hitpoint->w_point = cp_cords[X];
+	}
 	return (sqrtf(
 			powf(cp_cords[X] - player->coords[X], 2)
 			+ powf(cp_cords[Y] - player->coords[Y], 2))
