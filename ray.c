@@ -94,7 +94,7 @@ float	launch_ray(t_player *player, float angle, t_minimap *map,
 	if (hitpoint->hit_dir == X)
 	{
 		if (cp_cords[X] >= player->coords[X])
-			hitpoint->wall_pos = WEAST;
+			hitpoint->wall_pos = WEST;
 		else
 			hitpoint->wall_pos = EAST;
 		hitpoint->w_point = cp_cords[Y];
@@ -102,9 +102,9 @@ float	launch_ray(t_player *player, float angle, t_minimap *map,
 	else
 	{
 		if (cp_cords[Y] >= player->coords[Y])
-			hitpoint->wall_pos = SOUTH;
+			hitpoint->wall_pos = NORTH;
 		else
-			hitpoint->wall_pos = NORT;
+			hitpoint->wall_pos = SOUTH;
 		hitpoint->w_point = cp_cords[X];
 	}
 	return (sqrtf(

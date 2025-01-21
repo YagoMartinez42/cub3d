@@ -64,13 +64,13 @@ void	drawline(void *c3d, int j, float k, int color)
 }
 static int select_texture(t_hitpoint *hit)
 {
-	if (hit->wall_pos == NORT)
+	if (hit->wall_pos == NORTH)
 		return (0xFF551B);
 	if (hit->wall_pos == EAST)
 		return (0x7D2181);
 	if (hit->wall_pos == SOUTH)
 		return (0x424632);
-	if (hit->wall_pos == WEAST)
+	if (hit->wall_pos == WEST)
 		return (0xD5303E);
 	return (0);
 }
