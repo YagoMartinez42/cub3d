@@ -54,28 +54,49 @@ static void	dda(float *crds, t_map *map, t_minimap *m_map, t_hitpoint *ht)
 	float			dists[3];
 	float			costs[2];
 	int			cords_int[2];
+	int color = 0x0;
 
 	cords_int[X] = crds[X];
 	cords_int[Y] = crds[Y];
+	ht->hit_dir = 3;
 	while (!detect_colision(cords_int[Y] / m_map->size, cords_int[X] / m_map->size, map))
 	{
-		ft_image_pixel_put(m_map->texture, crds[X], crds[Y], 0xFFFFFF);
+		/*
+		MAP DEBUG INFO:
+			Blue: Hit in X
+			Green: Hit in Y
+			Red: Invalid hit
+		*/
+		ft_image_pixel_put(m_map->texture, crds[X], crds[Y], color);
 		dists[X] = calc_dist(crds[X], trig[1]);
 		dists[Y] = calc_dist(crds[Y], trig[0]);
 		costs[X] = dists[X] / fabsf(trig[1]);
 		costs[Y] = dists[Y] / fabsf(trig[0]);
-		if (costs[X] <= costs[Y])
+		if (costs[X] < costs[Y])
 		{
 			crds[X] += dists[X] * dir[X];
 			crds[Y] += dists[X] * fabsf((trig[2])) * dir[Y];
 			ht->hit_dir = X;
 			cords_int[X] = crds[X];
-			continue ;
+			color = 0xFF;
 		}
-		crds[Y] += dists[Y] * dir[Y];
-		cords_int[Y] = crds[Y];
-		crds[X] += dists[Y] / fabsf(trig[2]) * dir[X];
-		ht->hit_dir = Y;
+		else if (costs[X] > costs[Y])
+		{
+			crds[Y] += dists[Y] * dir[Y];
+			cords_int[Y] = crds[Y];
+			crds[X] += dists[Y] / fabsf(trig[2]) * dir[X];
+			ht->hit_dir = Y;
+			color = 0xFF00;
+		}
+		else
+		{
+			crds[X] += dists[X] * dir[X];
+			crds[Y] += dists[X] * fabsf((trig[2])) * dir[Y];
+			ht->hit_dir = X;
+			cords_int[X] = crds[X];
+			cords_int[Y] = crds[Y];
+			color = 0xff0000;
+		}
 	}
 }
 
