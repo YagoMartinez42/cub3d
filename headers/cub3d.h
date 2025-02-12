@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:32 by samartin          #+#    #+#             */
-/*   Updated: 2024/12/06 23:09:17 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/02/12 13:36:30 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdio.h>
-# include <mlx.h>
+#include <sys/time.h>
+# include "../minilibx-linux/mlx.h"
 # include <math.h>
 # include <inttypes.h>
 # include "../libft/include/libft.h"
@@ -24,14 +25,18 @@
 # include "map.h"
 # include "player.h"
 # ifndef WINW
-#  define WINW 1280
+#  define WINW 1440
 # endif
-# ifndef WINH
-#  define WINH 720
+# ifndef WINH 
+#  define WINH 1080
 # endif
 # ifndef BPP
 #  define BPP 4
 # endif
+# define NORTH 0
+# define EAST 1
+# define SOUTH 2
+# define WEST 3
 
 enum	e_direction
 {

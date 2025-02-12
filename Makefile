@@ -22,6 +22,7 @@ SRC		:= main.c \
 			validate_map.c\
 			minimap.c\
 			error_management.c
+
 SUBMODULES := .submodules
 
 OBJ		:= ${SRC:.c=.o}
