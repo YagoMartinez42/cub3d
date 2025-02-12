@@ -121,10 +121,9 @@ int	game_loop(void *c3d)
 		drawline(c3d, j, k, select_texture(&col));
 		j++;
 	}
+	if (cub3d->player.minimap)
+		img_into_img(*cub3d->mlxgraph.scrnbuff, *cub3d->mlxgraph.minimap->texture, 0, 0);
 	mlx_put_image_to_window(cub3d->mlxgraph.mlx, cub3d->mlxgraph.win,
 		cub3d->mlxgraph.scrnbuff->img, 0, 0);
-	if (cub3d->player.minimap)
-		mlx_put_image_to_window(cub3d->mlxgraph.mlx, cub3d->mlxgraph.win,
-			cub3d->mlxgraph.minimap->texture->img, 0, 0);
 	return (0);
 }
