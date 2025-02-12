@@ -73,18 +73,11 @@ typedef struct s_mlxgrph
 	t_minimap	*minimap;
 }		t_mlxgrph;
 
-
-typedef struct s_colpoint
-{
-	int		c_point;	
-	float	w_point;
-}				t_colpoint;
-
-
 t_mlxgrph	*mlxgrph_new(void *mlx);
 t_texture	*new_texture(void *c3d, int width, int height);
 t_minimap	*new_minimap(void *c3d);
 void		destroy_window(t_mlxgrph *this);
 void		ft_image_pixel_put(t_texture *texture, int x, int y, int color);
 void		print_column(void *c3d, int size, t_colpoint cpoint);
+void		img_into_img(t_texture target, t_texture mini, int *pos);
 #endif
