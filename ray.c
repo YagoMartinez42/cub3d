@@ -67,7 +67,6 @@ static void	dda(float *crds, t_map *map, t_minimap *m_map, t_hitpoint *ht)
 			Green: Hit in Y
 			Red: Invalid hit
 		*/
-		ft_image_pixel_put(m_map->texture, crds[X], crds[Y], color);
 		dists[X] = calc_dist(crds[X], trig[1]);
 		dists[Y] = calc_dist(crds[Y], trig[0]);
 		costs[X] = dists[X] / fabsf(trig[1]);
@@ -97,7 +96,9 @@ static void	dda(float *crds, t_map *map, t_minimap *m_map, t_hitpoint *ht)
 			cords_int[Y] = crds[Y];
 			color = 0xff0000;
 		}
+		ft_image_pixel_put(m_map->texture, cords_int[X], cords_int[Y], color);
 	}
+		ft_image_pixel_put(m_map->texture, cords_int[X], cords_int[Y], 0xFF0000);
 }
 
 float	launch_ray(t_player *player, float angle, t_minimap *map,

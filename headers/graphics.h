@@ -67,10 +67,10 @@ typedef struct s_minimap
 //mlx grph struct
 typedef struct s_mlxgrph
 {
-	t_mlx		*mlx;
-	t_mlxwin	*win;
-	t_texture	*scrnbuff;
-	t_minimap	*minimap;
+	t_mlx			*mlx;
+	t_mlxwin		*win;
+	t_texture		*scrnbuff;
+	t_minimap		*minimap;
 }		t_mlxgrph;
 
 
