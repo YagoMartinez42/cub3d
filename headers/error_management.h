@@ -12,6 +12,7 @@
 
 #ifndef ERROR_MANAGEMENT_H
 # define ERROR_MANAGEMENT_H
+# include <ctype.h>
 
 int8_t	c3d_errors(int8_t code);
 void	c3d_fatal_errors(int8_t code);
