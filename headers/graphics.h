@@ -12,7 +12,6 @@
 
 #ifndef GRAPHICS_H
 # define GRAPHICS_H
-# include "cub3d.h"
 
 /**
  * Type MinilibX Graphic Controller: Contains the two pointers needed by most
