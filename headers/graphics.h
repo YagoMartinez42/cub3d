@@ -80,12 +80,13 @@ typedef struct s_hitpoint
 	int		wall_pos;
 }				t_hitpoint;
 
+typedef struct s_cub3d t_cub3d;
 
 t_mlxgrph	*mlxgrph_new(void *mlx);
 t_texture	*new_texture(void *c3d, int width, int height);
 t_minimap	*new_minimap(void *c3d);
 void		destroy_window(t_mlxgrph *this);
 void		ft_image_pixel_put(t_texture *texture, int x, int y, int color);
-void		print_column(void *c3d, int size, t_hitpoint cpoint);
+void		print_column(t_cub3d *c3d, int size, int ray, t_hitpoint cpoint);
 void		img_into_img(t_texture target, t_texture mini, int x, int y);
 #endif
