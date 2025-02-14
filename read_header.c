@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_header.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 11:21:43 by samartin          #+#    #+#             */
-/*   Updated: 2024/12/05 15:56:53 by samartin         ###   ########.fr       */
+/*   Updated: 2025/02/13 13:26:31 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,17 +92,20 @@ static uint8_t	c3d_add_line(char *line, char **header, uint8_t l_flags)
 static uint8_t	c3d_load_textures(t_map *map, char **header, t_mlx *mlx)
 {
 	int		i;
-	int		vdr;
 
 	i = 0;
 	if (!map)
 		return (1);
 	while (i < 4)
 	{
-		map->walls[i].img = (t_texture *)mlx_xpm_file_to_image(mlx, header[i], \
-			&vdr, &vdr);
+printf("%s\n", header[i]);
+		map->walls[i].img = (t_mlximg *)mlx_xpm_file_to_image(mlx, header[i], \
+			&(map->walls[i].wd), &(map->walls[i].ht));
 		if (!(map->walls[i].img))
 			return (1);
+		map->walls[i].addr = (int *)mlx_get_data_addr(map->walls[i].img,
+				&(map->walls[i].bits_per_pixel), &(map->walls[i].line_length),
+				&(map->walls[i].endian));
 		i++;
 	}
 	return (0);
