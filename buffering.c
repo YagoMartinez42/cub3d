@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:28:43 by samartin          #+#    #+#             */
-/*   Updated: 2025/02/14 13:40:38 by samartin         ###   ########.fr       */
+/*   Updated: 2025/02/16 14:00:49 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	set_wall_pixel(t_texture *imgs, int offset, t_hitpoint cpoint,
 {
 	int	tex_offset;
 
-	if (cpoint.wall_pos == SOUTH || cpoint.wall_pos == WEST)
+	if (cpoint.wall_pos == NORTH || cpoint.wall_pos == EAST)
 		cpoint.w_point = 1 - cpoint.w_point;
 	tex_offset = (int)(cpoint.w_point * imgs[1].wd) + ((imgs[1].wd
 				* (int)(vpoint * (imgs[1].ht - 1))));
