@@ -3,51 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   buffering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:28:43 by samartin          #+#    #+#             */
-/*   Updated: 2024/12/03 12:57:04 by samartin         ###   ########.fr       */
+/*   Updated: 2025/02/16 14:00:49 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/graphics.h"
+#include "headers/cub3d.h"
 
-static float	set_wall_pixel(t_texture buffer, t_texture_column tcol,
-	int offset,	float vpoint)
+static void	set_wall_pixel(t_texture *imgs, int offset, t_hitpoint cpoint,
+	float vpoint)
 {
-	int		tex_offset;
-	float	v_increase;
+	int	tex_offset;
 
-	tex_offset = ((int)(tcol.wall_point * tcol.texture->wd) * BPP)
-		+ (tcol.texture->wd * (int)(vpoint * tcol.texture->ht) * BPP);
-	*(int *)(buffer.addr + offset) = *(int *)(tcol.texture->addr
-			+ tex_offset);
-	return (v_increase);
+	if (cpoint.wall_pos == NORTH || cpoint.wall_pos == EAST)
+		cpoint.w_point = 1 - cpoint.w_point;
+	tex_offset = (int)(cpoint.w_point * imgs[1].wd) + ((imgs[1].wd
+				* (int)(vpoint * (imgs[1].ht - 1))));
+	*(int *)(imgs[0].addr + offset) = *(int *)(imgs[1].addr + tex_offset);
 }
 
-void	print_column(t_texture buffer, t_texture_column tcol, int size)
+void	print_column(t_cub3d *c3d, int size, int ray, t_hitpoint cpoint)
 {
-	int		y;
-	int		offset;
-	float	vpoint;
+	int			y;
+	int			offset;
+	float		vpoint;
+	const float	v_increase = 1.0F / size;
+	t_texture	imgs [2];
 
-	if (size > buffer.ht)
-		vpoint = 1 - (buffer.ht / size);
-	else
-		vpoint = 0;
-	y = 0;
-	while (y < buffer.ht)
+	imgs[0] = *(c3d->mlxgraph.scrnbuff);
+	imgs[1] = c3d->player.map.walls[cpoint.wall_pos];
+	vpoint = 0.0F;
+	if (size > imgs[0].ht)
+		vpoint = (1.0F - ((float)imgs[0].ht / size)) / 2;
+	y = -1;
+	while (++y < imgs[0].ht)
 	{
-		offset = (tcol.ray * BPP) + (buffer.wd * y * BPP);
-		if (y < ((buffer.ht - size) / 2))
-			*(int *)(buffer.addr + offset) = tcol.ceil_color;
-		else if (y > (size + ((buffer.ht - size) / 2)))
-			*(int *)(buffer.addr + offset) = tcol.floor_color;
+		offset = (ray + (imgs[0].wd * y));
+		if (y < ((imgs[0].ht - size) / 2))
+			*(int *)(imgs[0].addr + offset) = c3d->player.map.ceil_color;
+		else if (y > (size + ((imgs[0].ht - size) / 2)))
+			*(int *)(imgs[0].addr + offset) = c3d->player.map.floor_color;
 		else
 		{
-			set_wall_pixel(buffer, tcol, offset, vpoint);
-			vpoint += (1 / tcol.texture->ht) * (buffer.ht / size);
+			set_wall_pixel(imgs, offset, cpoint, vpoint);
+			vpoint += v_increase;
 		}
-		y++;
 	}
 }

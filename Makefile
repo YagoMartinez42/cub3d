@@ -10,6 +10,7 @@ LFTDIR	:= libft
 RM		:= rm -rf
 SRC		:= main.c \
 			image_interface.c\
+			buffering.c\
 			user_input.c\
 			game_loop.c\
 			new_map.c\
