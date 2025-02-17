@@ -59,47 +59,6 @@ static float	seconds_before_this_frame()
 	return (result);
 }
 
-void	drawline(void *c3d, int j, float k, int color)
-{
-	const t_cub3d	*cub3d = c3d;
-	float			h;
-	int				i;
-	int				l;
-	int				h_2;
-
-	i = 0;
-	h = roundf(WINH / k);
-	while (i < WINH / 2)
-	{
-		ft_image_pixel_put(cub3d->mlxgraph.scrnbuff, j, i, cub3d->player.map.ceil_color);
-		i++;
-	}
-	while (i < WINH)
-	{
-		ft_image_pixel_put(cub3d->mlxgraph.scrnbuff, j, i, cub3d->player.map.floor_color);
-		i++;
-	}
-	l = -h / 2;
-	h_2 = h / 2;
-	while (l < h_2)
-	{
-		ft_image_pixel_put(cub3d->mlxgraph.scrnbuff, j, WINH / 2 + l, color);
-		l++;
-	}
-}
-static int select_texture(t_hitpoint *hit)
-{
-	if (hit->wall_pos == NORTH)
-		return (0xFF551B);
-	if (hit->wall_pos == EAST)
-		return (0x7D2181);
-	if (hit->wall_pos == SOUTH)
-		return (0x424632);
-	if (hit->wall_pos == WEST)
-		return (0xD5303E);
-	return (0);
-}
-
 int	game_loop(void *c3d)
 {
 	t_cub3d		*cub3d;
@@ -111,14 +70,14 @@ int	game_loop(void *c3d)
 	cub3d = c3d;
 	move_player(&cub3d->player, seconds_before_this_frame());
 	j = 0;
-	i = (FOV) / 2;
+	i = ((FOV) / 2);
 	print_minimap(&cub3d->player.map, cub3d->mlxgraph.minimap);
 	while (j < WINW)
 	{
 		k = launch_ray(&cub3d->player, cub3d->player.aov - (i * (M_PI / 180)),
 				cub3d->mlxgraph.minimap, &col);
 		i -= FOV / WINW;
-		drawline(c3d, j, k, select_texture(&col));
+		print_column(c3d, roundf(WINH / k), j, col);
 		j++;
 	}
 	if (cub3d->player.minimap)

@@ -12,8 +12,8 @@
 
 #ifndef MAP_H
 # define MAP_H
-# include "cub3d.h"
-
+# include "graphics.h"
+# include "../libft/include/libft.h"
 /**
  * Type Map structure: contains all the data loaded from the map .cub file.
  * @var map_size: Width ([0]) and height ([1]) of the rectangular region to be

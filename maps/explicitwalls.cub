@@ -1,7 +1,7 @@
-NO ./textures/wall48.xpm
-SO ./textures/wall48.xpm
-WE ./textures/wall48.xpm
-EA ./textures/wall48.xpm
+NO ./textures/north.xpm
+SO ./textures/south.xpm
+WE ./textures/west.xpm
+EA ./textures/east.xpm
 F 175,113,53
 C 0,170,228
         1111111111111111111111111

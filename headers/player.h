@@ -12,7 +12,7 @@
 
 #ifndef PLAYER_H
 # define PLAYER_H
-# include "cub3d.h"
+# include "map.h"
 # ifndef FOV
 #  define FOV 60.0f
 # endif

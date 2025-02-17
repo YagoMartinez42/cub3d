@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:18:21 by bvelasco          #+#    #+#             */
-/*   Updated: 2025/01/21 10:35:53 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/02/14 13:48:34 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int	exit_game(void *mlx)
 {
 	(void) mlx;
-	exit (0);
+	mlx_loop_end(mlx);
+	return (26);
 }
 
 t_mlxgrph	init_graphics(void)
@@ -64,6 +65,17 @@ t_cub3d	initializer(int fd)
 	return (result);
 }
 
+static void debug_print(t_cub3d c3d)
+{
+	int i = 0;
+
+	while (i < 4)
+	{
+		printf("wd: %d, ht: %d, add: %p\n", c3d.player.map.walls[i].wd, c3d.player.map.walls[i].ht, c3d.player.map.walls[i].addr);
+		i++;
+	}
+}
+
 int	main(int argc, char *argv[])
 {
 	t_cub3d	c3d;
@@ -74,8 +86,7 @@ int	main(int argc, char *argv[])
 	c3d.mlxgraph.minimap = new_minimap(&c3d);
 	if (!c3d.is_valid)
 		return (1);
-	c3d.player.map.ceil_color = 0x00aae4;
-	c3d.player.map.floor_color = 0xaf7135;
+	debug_print(c3d);
 	mlx_hook(c3d.mlxgraph.win, 2, 1L << 0, move, &c3d.player);
 	mlx_hook(c3d.mlxgraph.win, 3, 1L << 1, unmove, &c3d.player);
 	mlx_loop_hook(c3d.mlxgraph.mlx, game_loop, &c3d);
