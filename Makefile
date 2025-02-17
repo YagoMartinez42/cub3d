@@ -1,6 +1,6 @@
 NAME	:= cub3d
 CC		:= cc
-CFLAGS	+= -Wall -Wextra -Werror -Iminilibx-linux
+CFLAGS	+= -Wall -Wextra -Werror -Iminilibx-linux -g3
 MLXFLG	:= -lXext -lX11 -Lminilibx-linux -lmlx -lm
 MLXLIB	:= minilibx-linux/libmlx.a
 MLXDIR	:= minilibx-linux
