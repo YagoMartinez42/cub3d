@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:18:21 by bvelasco          #+#    #+#             */
-/*   Updated: 2025/02/14 13:48:34 by samartin         ###   ########.fr       */
+/*   Updated: 2025/02/17 10:39:05 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,6 @@ t_cub3d	initializer(int fd)
 	return (result);
 }
 
-static void debug_print(t_cub3d c3d)
-{
-	int i = 0;
-
-	while (i < 4)
-	{
-		printf("wd: %d, ht: %d, add: %p\n", c3d.player.map.walls[i].wd, c3d.player.map.walls[i].ht, c3d.player.map.walls[i].addr);
-		i++;
-	}
-}
-
 int	main(int argc, char *argv[])
 {
 	t_cub3d	c3d;
@@ -83,10 +72,11 @@ int	main(int argc, char *argv[])
 	if (argc != 2 || ft_strncmp((argv[1] + ft_strlen(argv[1]) - 4), ".cub", 4))
 		return (write(2, "Invalid arguments\n", 19));
 	c3d = initializer(open(argv[1], O_RDONLY));
+	if (!c3d.is_valid)
+		return (1);
 	c3d.mlxgraph.minimap = new_minimap(&c3d);
 	if (!c3d.is_valid)
 		return (1);
-	debug_print(c3d);
 	mlx_hook(c3d.mlxgraph.win, 2, 1L << 0, move, &c3d.player);
 	mlx_hook(c3d.mlxgraph.win, 3, 1L << 1, unmove, &c3d.player);
 	mlx_loop_hook(c3d.mlxgraph.mlx, game_loop, &c3d);
