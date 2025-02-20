@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_matrix_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 11:25:53 by samartin          #+#    #+#             */
-/*   Updated: 2024/11/21 16:03:10 by samartin         ###   ########.fr       */
+/*   Updated: 2025/02/17 09:50:06 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ uint8_t	c3d_clear_header(char **header)
 	while (i < 6)
 	{
 		if (header[i])
+		{
 			free(header[i]);
+			header[i] = NULL;
+		}
 		i++;
 	}
 	return (255);

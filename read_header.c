@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 11:21:43 by samartin          #+#    #+#             */
-/*   Updated: 2025/02/13 13:26:31 by samartin         ###   ########.fr       */
+/*   Updated: 2025/02/19 13:29:08 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,40 @@
 #include "headers/aux/new_map.h"
 
 /**
- * Allocates and populates an array with specific strings, ending with a NULL
- *  pointer.
+ * Calculates the int(32) value for a color from an array of 3 strings.
  * 
- * @return The array containing the keywords.
+ * @param rgbs An array of strings containing the three values as text.
+ * @return -1 if any of the values was out of range of 0 to 255. The int
+ *  usable for MLX in any other case.
  */
-static char	**c3d_populate_kw(void)
-{
-	char	**kwords;
 
-	kwords = malloc(7 * sizeof(char *));
-	if (!kwords)
-		c3d_fatal_errors(-1);
-	kwords[0] = ft_strdup("NO ");
-	kwords[1] = ft_strdup("EA ");
-	kwords[2] = ft_strdup("SO ");
-	kwords[3] = ft_strdup("WE ");
-	kwords[4] = ft_strdup("F ");
-	kwords[5] = ft_strdup("C ");
-	kwords [6] = NULL;
-	return (kwords);
+int	c3d_atoi_rgb(char **rgbs)
+{
+	int	num;
+	int	dig;
+	int	i;
+	int	j;
+
+	num = 0;
+	i = 0;
+	while (i < 3)
+	{
+		j = 0;
+		dig = 0;
+		while (ft_isspace(rgbs[i][j]) || rgbs[i][j] == '+')
+			j++;
+		while (ft_isdigit(rgbs[i][j]))
+		{
+			dig = (dig * 10) + (rgbs[i][j] - '0');
+			j++;
+		}
+		i++;
+		if (dig >= 0 && dig <= 255)
+			num += (dig << (16 - (8 * i)));
+		else
+			return (-1);
+	}
+	return (num);
 }
 
 /**
@@ -50,11 +64,10 @@ static char	**c3d_populate_kw(void)
  */
 static uint8_t	c3d_add_line(char *line, char **header, uint8_t l_flags)
 {
-	char	**kwords;
-	int		y;
+	const char	*kwords[] = {"NO ", "EA ", "SO ", "WE ", "F ", "C ", NULL};
+	int			y;
 
 	y = 0;
-	kwords = c3d_populate_kw();
 	line = ft_strtrim(line, " \t\v\n\r\f");
 	while (kwords[y])
 	{
@@ -64,17 +77,17 @@ static uint8_t	c3d_add_line(char *line, char **header, uint8_t l_flags)
 			if ((1 << y) & l_flags)
 			{
 				free(line);
-				return (c3d_free2d(kwords), c3d_clear_header(header));
+				return (c3d_clear_header(header));
 			}
 			header[y] = ft_strtrim(line + 2, " \t\v\n\r\f");
 			free(line);
-			return (c3d_free2d(kwords), 1 << y);
+			return (1 << y);
 		}
 		y++;
 	}
 	if (*line != '\0')
-		return (free(line), c3d_free2d(kwords), c3d_clear_header(header));
-	return (free(line), c3d_free2d(kwords));
+		return (free(line), c3d_clear_header(header));
+	return (free(line), 255);
 }
 
 /**
@@ -98,7 +111,6 @@ static uint8_t	c3d_load_textures(t_map *map, char **header, t_mlx *mlx)
 		return (1);
 	while (i < 4)
 	{
-printf("%s\n", header[i]);
 		map->walls[i].img = (t_mlximg *)mlx_xpm_file_to_image(mlx, header[i], \
 			&(map->walls[i].wd), &(map->walls[i].ht));
 		if (!(map->walls[i].img))
@@ -131,14 +143,14 @@ static uint8_t	c3d_assign_colors(t_map *map, char **header)
 	rgbs = ft_split(header[4], ',');
 	if (!c3d_matrix_health_3(rgbs))
 		return (1);
-	map->floor_color = ((ft_atoi(rgbs[0])) << 16 | ft_atoi(rgbs[1]) << 8 | \
-		ft_atoi(rgbs[2]));
+	map->floor_color = (c3d_atoi_rgb (rgbs));
 	c3d_free2d(rgbs);
 	rgbs = ft_split(header[5], ',');
 	if (!c3d_matrix_health_3(rgbs))
 		return (1);
-	map->ceil_color = ((ft_atoi(rgbs[0])) << 16 | ft_atoi(rgbs[1]) << 8 | \
-		ft_atoi(rgbs[2]));
+	map->ceil_color = (c3d_atoi_rgb (rgbs));
+	if (map->ceil_color == -1 || map->floor_color == -1)
+		return (1);
 	c3d_free2d(rgbs);
 	return (0);
 }
@@ -161,6 +173,7 @@ uint8_t	c3d_read_header(int fd, t_map *map, t_mlx *mlx)
 	uint8_t	line_flags;
 
 	line_flags = 0;
+	ft_bzero(header, 6 * sizeof(char *));
 	while (42)
 	{
 		line = get_next_line(fd);
@@ -176,9 +189,7 @@ uint8_t	c3d_read_header(int fd, t_map *map, t_mlx *mlx)
 		else
 			return (1);
 	}
-	if (c3d_load_textures(map, header, mlx))
-		return (c3d_clear_header(header));
-	else if (c3d_assign_colors(map, header))
+	if (c3d_load_textures(map, header, mlx) || c3d_assign_colors(map, header))
 		return (c3d_clear_header(header));
 	return (c3d_clear_header(header), 0);
 }
