@@ -1,0 +1,19 @@
+NO textures/abbey_north.xpm
+SO textures/abbey_south.xpm
+WE textures/abbey_west.xpm
+EA textures/abbey_east.xpm
+
+F 0,64,64
+C 224,128,0
+
+111111
+100001
+100001  111
+100001  100
+10N001  111
+100001
+110001
+100001
+100001
+10000111
+111111
