@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:46:18 by samartin          #+#    #+#             */
-/*   Updated: 2024/12/11 17:37:17 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/02/28 12:27:49 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,10 @@ typedef struct s_map
 	int32_t		floor_color;
 	int32_t		ceil_color;
 	t_texture	walls[4];
-	t_list		*animated_txtr_lst;
 	char		**map_matrix;
 }	t_map;
 
 void	print_minimap(t_map *map, t_minimap *minimap);
 t_map	new_map(int map_fd, t_mlx *mlx);
-void	destroy_map(t_map *this);
+uint8_t	c3d_free2d_size(char **matrix, int size);
 #endif
