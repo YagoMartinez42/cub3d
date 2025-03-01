@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 13:55:00 by bvelasco          #+#    #+#             */
-/*   Updated: 2025/01/02 16:38:56by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/02/23 18:27:33 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GRAPHICS_H
 # define GRAPHICS_H
+
+/* Pre-def */
+typedef struct s_cub3d	t_cub3d;
 
 /**
  * Type MinilibX Graphic Controller: Contains the two pointers needed by most
@@ -21,11 +24,9 @@
  * @var win: Void pointer to the window instance, created by the
  *  `mlx_new_window` function.
  */
-
-//mlx typedefs
-typedef void	t_mlx;
-typedef void	t_mlxwin;
-typedef void	t_mlximg;
+typedef void			t_mlx;
+typedef void			t_mlxwin;
+typedef void			t_mlximg;
 
 /**
  * Type MinilibX Texture: An image struct to be used by MLX functions. We add
@@ -72,15 +73,12 @@ typedef struct s_mlxgrph
 	t_minimap		*minimap;
 }		t_mlxgrph;
 
-
 typedef struct s_hitpoint
 {
 	int		hit_dir;	
 	float	w_point;
 	int		wall_pos;
 }				t_hitpoint;
-
-typedef struct s_cub3d t_cub3d;
 
 t_mlxgrph	*mlxgrph_new(void *mlx);
 t_texture	*new_texture(void *c3d, int width, int height);

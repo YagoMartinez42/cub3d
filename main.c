@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:18:21 by bvelasco          #+#    #+#             */
-/*   Updated: 2025/02/17 10:39:05 by samartin         ###   ########.fr       */
+/*   Updated: 2025/02/28 11:44:47 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,27 @@ int	exit_game(void *mlx)
 	(void) mlx;
 	mlx_loop_end(mlx);
 	return (26);
+}
+
+void game_clear(t_cub3d c3d)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		mlx_destroy_image(c3d.mlxgraph.mlx, c3d.player.map.walls[i].img);
+		i++;
+	}
+	mlx_destroy_image(c3d.mlxgraph.mlx, c3d.mlxgraph.minimap->texture->img);
+	mlx_destroy_image(c3d.mlxgraph.mlx, c3d.mlxgraph.scrnbuff->img);
+	mlx_destroy_window(c3d.mlxgraph.mlx, c3d.mlxgraph.win);
+	mlx_destroy_display(c3d.mlxgraph.mlx);
+	c3d_free2d_size(c3d.player.map.map_matrix, c3d.player.map.map_size[Y]);
+	free(c3d.mlxgraph.mlx);
+	free(c3d.mlxgraph.scrnbuff);
+	free(c3d.mlxgraph.minimap->texture);
+	free(c3d.mlxgraph.minimap);
 }
 
 t_mlxgrph	init_graphics(void)
@@ -81,5 +102,6 @@ int	main(int argc, char *argv[])
 	mlx_hook(c3d.mlxgraph.win, 3, 1L << 1, unmove, &c3d.player);
 	mlx_loop_hook(c3d.mlxgraph.mlx, game_loop, &c3d);
 	mlx_loop(c3d.mlxgraph.mlx);
+	game_clear(c3d);
 	return (0);
 }

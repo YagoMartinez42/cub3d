@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:32 by samartin          #+#    #+#             */
-/*   Updated: 2025/02/12 13:36:30 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/02/23 18:31:57 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdio.h>
-#include <sys/time.h>
+# include <sys/time.h>
 # include "../minilibx-linux/mlx.h"
 # include <math.h>
 # include <inttypes.h>

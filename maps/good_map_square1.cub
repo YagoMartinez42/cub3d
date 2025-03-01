@@ -2,6 +2,7 @@ NO ./textures/2_1h1.xpm
 SO    ./textures/2_1h2.xpm
 WE ./textures/1_2v1.xpm
 EA ./textures/1_2v2.xpm
+
 F 96,   0, 0
 C 255, 160,160
 

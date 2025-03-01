@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:28:43 by samartin          #+#    #+#             */
-/*   Updated: 2025/02/16 14:00:49 by samartin         ###   ########.fr       */
+/*   Updated: 2025/02/22 16:02:22 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	set_wall_pixel(t_texture *imgs, int offset, t_hitpoint cpoint,
 	if (cpoint.wall_pos == NORTH || cpoint.wall_pos == EAST)
 		cpoint.w_point = 1 - cpoint.w_point;
 	tex_offset = (int)(cpoint.w_point * imgs[1].wd) + ((imgs[1].wd
-				* (int)(vpoint * (imgs[1].ht - 1))));
+				* (int)(vpoint * (imgs[1].ht))));
 	*(int *)(imgs[0].addr + offset) = *(int *)(imgs[1].addr + tex_offset);
 }
 
@@ -41,9 +41,9 @@ void	print_column(t_cub3d *c3d, int size, int ray, t_hitpoint cpoint)
 	while (++y < imgs[0].ht)
 	{
 		offset = (ray + (imgs[0].wd * y));
-		if (y < ((imgs[0].ht - size) / 2))
+		if (y <= ((imgs[0].ht - size) / 2))
 			*(int *)(imgs[0].addr + offset) = c3d->player.map.ceil_color;
-		else if (y > (size + ((imgs[0].ht - size) / 2)))
+		else if (y >= (size + ((imgs[0].ht - size) / 2)))
 			*(int *)(imgs[0].addr + offset) = c3d->player.map.floor_color;
 		else
 		{

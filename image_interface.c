@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image_interface.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:25:06 by bvelasco          #+#    #+#             */
-/*   Updated: 2025/02/12 13:33:11 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/02/23 18:22:42 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	img_into_img(t_texture target, t_texture mini, int x, int y)
 		while (j < mini.wd)
 		{
 			*(int *)(target.addr + (x + j
-				+ (target.wd * y) + (target.wd * i)))
+						+ (target.wd * y) + (target.wd * i)))
 				= *(int *)(mini.addr + (j + (mini.wd * i)));
 			j++;
 		}
