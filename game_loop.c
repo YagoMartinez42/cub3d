@@ -55,7 +55,6 @@ static float	seconds_before_this_frame()
 	}
 	last_sec = time.tv_sec;
 	last_usec = time.tv_usec;
-	printf("%f\n", result);
 	return (result);
 }
 
@@ -70,12 +69,14 @@ int	game_loop(void *c3d)
 	cub3d = c3d;
 	move_player(&cub3d->player, seconds_before_this_frame());
 	j = 0;
-	i = ((FOV) / 2);
+	i = 0;//((FOV) / 2);
 	print_minimap(&cub3d->player.map, cub3d->mlxgraph.minimap);
-	while (j < WINW)
+	while (j < 1)//WINW)
 	{
 		k = launch_ray(&cub3d->player, cub3d->player.aov - (i * (M_PI / 180)),
 				cub3d->mlxgraph.minimap, &col);
+		if (i <= 0.001 && i >= -0.001)
+			printf("Central ray: %f\n", k);
 		i -= FOV / WINW;
 		print_column(c3d, roundf(WINH / k), j, col);
 		j++;
