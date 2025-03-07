@@ -69,9 +69,9 @@ int	game_loop(void *c3d)
 	cub3d = c3d;
 	move_player(&cub3d->player, seconds_before_this_frame());
 	j = 0;
-	i = 0;//((FOV) / 2);
+	i = ((FOV) / 2);
 	print_minimap(&cub3d->player.map, cub3d->mlxgraph.minimap);
-	while (j < 1)//WINW)
+	while (j < WINW)
 	{
 		k = launch_ray(&cub3d->player, cub3d->player.aov - (i * (M_PI / 180)),
 				cub3d->mlxgraph.minimap, &col);

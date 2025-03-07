@@ -102,8 +102,14 @@ static void	dda(float *crds, t_map *map, t_minimap *m_map, t_hitpoint *ht)
 		ft_image_pixel_put(m_map->texture, cords_int[X], cords_int[Y], color);
 	}
 	ft_image_pixel_put(m_map->texture, cords_int[X], cords_int[Y], 0xFF0000);
-	crds[X] = cords_int[X] + (remains[X] * dir[X]);
-	crds[Y] = cords_int[Y] + (remains[Y] * dir[Y]);
+	if (dir[X] == 1)
+		crds[X] = cords_int[X] + (remains[X] * dir[X]);
+	else
+		crds[X] = cords_int[X] + ((remains[X] - 1) * dir[X]);
+	if (dir[Y] == 1)
+		crds[Y] = cords_int[Y] + (remains[Y] * dir[Y]);
+	else
+		crds[Y] = cords_int[Y] + ((remains[Y] - 1) * dir[Y]);
 }
 
 float	launch_ray(t_player *player, float angle, t_minimap *map,
