@@ -130,7 +130,7 @@ float	launch_ray(t_player *player, float angle, t_minimap *map,
 			hitpoint->wall_pos = WEST;
 		else
 			hitpoint->wall_pos = EAST;
-		hitpoint->w_point = cp_cords[Y] - (int)cp_cords[Y];;
+		hitpoint->w_point = cp_cords[Y] - (int)cp_cords[Y];
 	}
 	else
 	{

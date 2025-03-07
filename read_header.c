@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 11:21:43 by samartin          #+#    #+#             */
-/*   Updated: 2025/02/19 13:29:08 by samartin         ###   ########.fr       */
+/*   Updated: 2025/02/20 11:26:32 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
  * @return -1 if any of the values was out of range of 0 to 255. The int
  *  usable for MLX in any other case.
  */
-
 int	c3d_atoi_rgb(char **rgbs)
 {
 	int	num;
@@ -41,11 +40,11 @@ int	c3d_atoi_rgb(char **rgbs)
 			dig = (dig * 10) + (rgbs[i][j] - '0');
 			j++;
 		}
-		i++;
 		if (dig >= 0 && dig <= 255)
 			num += (dig << (16 - (8 * i)));
 		else
 			return (-1);
+		i++;
 	}
 	return (num);
 }
@@ -68,6 +67,8 @@ static uint8_t	c3d_add_line(char *line, char **header, uint8_t l_flags)
 	int			y;
 
 	y = 0;
+	if (*line == '\n' || *line == '\0')
+		return (0);
 	line = ft_strtrim(line, " \t\v\n\r\f");
 	while (kwords[y])
 	{
@@ -75,10 +76,7 @@ static uint8_t	c3d_add_line(char *line, char **header, uint8_t l_flags)
 			((!ft_strncmp(line, kwords[y], 2) && y > 3)))
 		{
 			if ((1 << y) & l_flags)
-			{
-				free(line);
-				return (c3d_clear_header(header));
-			}
+				return (free(line), c3d_clear_header(header));
 			header[y] = ft_strtrim(line + 2, " \t\v\n\r\f");
 			free(line);
 			return (1 << y);
