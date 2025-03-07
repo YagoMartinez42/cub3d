@@ -140,7 +140,6 @@ float	launch_ray(t_player *player, float angle, t_minimap *map,
 			hitpoint->wall_pos = SOUTH;
 		hitpoint->w_point = cp_cords[X] - (int)cp_cords[X];
 	}
-	printf("CPCORDS: %f %f %f %f\n", cp_cords[X], cp_cords[Y], cp_cords[X] - player->coords[X], cp_cords[Y] - player->coords[Y]);
 	return (sqrtf(
 			powf(cp_cords[X] - player->coords[X], 2)
 			+ powf(cp_cords[Y] - player->coords[Y], 2)) * cosf(player->aov - angle));

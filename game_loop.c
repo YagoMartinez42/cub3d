@@ -75,8 +75,6 @@ int	game_loop(void *c3d)
 	{
 		k = launch_ray(&cub3d->player, cub3d->player.aov - (i * (M_PI / 180)),
 				cub3d->mlxgraph.minimap, &col);
-		if (i <= 0.001 && i >= -0.001)
-			printf("Central ray: %f\n", k);
 		i -= FOV / WINW;
 		print_column(c3d, roundf(WINH / k), j, col);
 		j++;
