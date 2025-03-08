@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   buffering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:28:43 by samartin          #+#    #+#             */
-/*   Updated: 2025/02/22 16:02:22 by samartin         ###   ########.fr       */
+/*   Updated: 2025/03/08 12:13:51 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	set_wall_pixel(t_texture *imgs, int offset, t_hitpoint cpoint,
 {
 	int	tex_offset;
 
-	if (cpoint.wall_pos == NORTH || cpoint.wall_pos == EAST)
+	if (cpoint.wall_pos == SOUTH || cpoint.wall_pos == WEST)
 		cpoint.w_point = 1 - cpoint.w_point;
 	tex_offset = (int)(cpoint.w_point * imgs[1].wd) + ((imgs[1].wd
 				* (int)(vpoint * (imgs[1].ht))));

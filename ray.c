@@ -56,7 +56,6 @@ static void	dda(float *crds, t_map *map, t_minimap *m_map, t_hitpoint *ht)
 	float			costs[2];
 	int				cords_int[2];
 	float			remains[2];
-	int color = 0x0;
 
 	cords_int[X] = crds[X];
 	cords_int[Y] = crds[Y];
@@ -87,7 +86,6 @@ static void	dda(float *crds, t_map *map, t_minimap *m_map, t_hitpoint *ht)
 			if (trig[0] != 0)
 				remains[Y] += fabsf(dists[X] * fabsf((trig[2])));
 			ht->hit_dir = X;
-			color = 0xFF;
 			remains[X] = 0;
 		}
 		else
@@ -96,12 +94,10 @@ static void	dda(float *crds, t_map *map, t_minimap *m_map, t_hitpoint *ht)
 			if (trig[1] != 0)
 				remains[X] += fabsf(dists[Y] / fabsf(trig[2]));
 			ht->hit_dir = Y;
-			color = 0xFF00;
 			remains[Y] = 0;
 		}
-		ft_image_pixel_put(m_map->texture, cords_int[X], cords_int[Y], color);
+		ft_image_pixel_put(m_map->texture, cords_int[X], cords_int[Y], 0xffffff);
 	}
-	ft_image_pixel_put(m_map->texture, cords_int[X], cords_int[Y], 0xFF0000);
 	if (dir[X] == 1)
 		crds[X] = cords_int[X] + (remains[X] * dir[X]);
 	else
@@ -127,17 +123,17 @@ float	launch_ray(t_player *player, float angle, t_minimap *map,
 	if (hitpoint->hit_dir == X)
 	{
 		if (cp_cords[X] >= player->coords[X])
-			hitpoint->wall_pos = WEST;
-		else
 			hitpoint->wall_pos = EAST;
+		else
+			hitpoint->wall_pos = WEST;
 		hitpoint->w_point = cp_cords[Y] - (int)cp_cords[Y];
 	}
 	else
 	{
 		if (cp_cords[Y] >= player->coords[Y])
-			hitpoint->wall_pos = NORTH;
-		else
 			hitpoint->wall_pos = SOUTH;
+		else
+			hitpoint->wall_pos = NORTH;
 		hitpoint->w_point = cp_cords[X] - (int)cp_cords[X];
 	}
 	return (sqrtf(
