@@ -55,7 +55,6 @@ static float	seconds_before_this_frame()
 	}
 	last_sec = time.tv_sec;
 	last_usec = time.tv_usec;
-	printf("%f\n", result);
 	return (result);
 }
 
