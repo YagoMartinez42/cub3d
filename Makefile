@@ -54,7 +54,7 @@ fclean: clean
 
 re: fclean all
 
-debug: clean $(SUBMODULES) $(MLXLIB) $(LIBFT)
+debug: fclean $(SUBMODULES) $(MLXLIB) $(LIBFT)
 	@CFLAGS="$(CFLAGS) -g3" make -e all
 
 .PHONY:	all clean fclean re bonus
