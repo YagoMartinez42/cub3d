@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 11:25:53 by samartin          #+#    #+#             */
-/*   Updated: 2025/02/17 09:50:06 by samartin         ###   ########.fr       */
+/*   Updated: 2025/03/09 14:37:56 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ uint8_t	c3d_free2d_size(char **matrix, int size)
 {
 	int	i;
 
+	if (!matrix)
+		return (1);
 	i = 0;
 	while (i < size)
 	{

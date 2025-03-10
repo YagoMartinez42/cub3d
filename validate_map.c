@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 12:40:43 by samartin          #+#    #+#             */
-/*   Updated: 2024/12/11 18:04:00 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/03/09 16:05:43 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,13 @@ static char	**c3d_dup_map(t_map *map)
 		exit(8);
 	pos[Y] = 0;
 	map_cpy = malloc(map->map_size[Y] * sizeof(char *));
+	if (!map_cpy)
+		return (NULL);
 	while (pos[Y] < map->map_size[Y])
 	{
 		map_cpy[pos[Y]] = malloc(map->map_size[X] * sizeof(char));
+		if (!map_cpy[pos[Y]])
+			return (NULL);
 		pos[X] = 0;
 		while (pos[X] < map->map_size[X])
 		{

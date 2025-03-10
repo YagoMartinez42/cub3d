@@ -1,7 +1,7 @@
 NAME	:= cub3d
 CC		:= cc
 CFLAGS	+= -Wall -Wextra -Werror -Iminilibx-linux
-MLXFLG	:= -lXext -lX11 -Lminilibx-linux -lmlx -lm
+MLXFLG	:= -lXext -lX11 -Lminilibx-linux -lmlx -lm -g3
 MLXLIB	:= minilibx-linux/libmlx.a
 MLXDIR	:= minilibx-linux
 LIBFT_FLAG := -Llibft/lib -lft
@@ -21,8 +21,7 @@ SRC		:= main.c \
 			player_new.c\
 			player_init_utils.c\
 			validate_map.c\
-			minimap.c\
-			error_management.c
+			minimap.c
 
 SUBMODULES := .submodules
 
@@ -55,7 +54,7 @@ fclean: clean
 
 re: fclean all
 
-debug: fclean $(SUBMODULES) $(MLXLIB) $(LIBFT)
+debug: clean $(SUBMODULES) $(MLXLIB) $(LIBFT)
 	@CFLAGS="$(CFLAGS) -g3" make -e all
 
 .PHONY:	all clean fclean re bonus
