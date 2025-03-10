@@ -19,16 +19,20 @@ static void	move_player(t_player *player, float sbf)
 			, (player->coords[0] + player->xmov * (VEL * sbf)
 				* cosf(player->aov + M_PI_2)), &player->map))
 	{
-		player->coords[0] += player->xmov * (VEL * sbf) * cosf(player->aov + M_PI_2);
-		player->coords[1] += player->xmov * (VEL * sbf) * sinf(player->aov + M_PI_2);
+		player->coords[0] += player->xmov * (VEL * sbf) * cosf(player->aov
+				+ M_PI_2);
+		player->coords[1] += player->xmov * (VEL * sbf) * sinf(player->aov
+				+ M_PI_2);
 	}
 	if (!detect_colision((player->coords[1]
 				+ player->ymov * (VEL * sbf) * sinf(player->aov + M_PI))
 			, (player->coords[0] + player->ymov * (VEL * sbf)
 				* cosf(player->aov + M_PI)), &player->map))
 	{
-		player->coords[0] += player->ymov * (VEL * sbf) * cosf(player->aov + M_PI);
-		player->coords[1] += player->ymov * (VEL * sbf) * sinf(player->aov + M_PI);
+		player->coords[0] += player->ymov * (VEL * sbf) * cosf(player->aov
+				+ M_PI);
+		player->coords[1] += player->ymov * (VEL * sbf) * sinf(player->aov
+				+ M_PI);
 	}
 	player->aov += (player->rotate * (M_PI / 180)) * (VEL * sbf) * 20 ;
 	return ;
@@ -68,6 +72,7 @@ int	game_loop(void *c3d)
 
 	cub3d = c3d;
 	move_player(&cub3d->player, seconds_before_this_frame());
+	mouse_rotation(cub3d);
 	j = 0;
 	i = ((FOV) / 2);
 	print_minimap(&cub3d->player.map, cub3d->mlxgraph.minimap);
@@ -80,7 +85,8 @@ int	game_loop(void *c3d)
 		j++;
 	}
 	if (cub3d->player.minimap)
-		img_into_img(*cub3d->mlxgraph.scrnbuff, *cub3d->mlxgraph.minimap->texture, 0, 0);
+		img_into_img(*cub3d->mlxgraph.scrnbuff,
+			*cub3d->mlxgraph.minimap->texture, 0, 0);
 	mlx_put_image_to_window(cub3d->mlxgraph.mlx, cub3d->mlxgraph.win,
 		cub3d->mlxgraph.scrnbuff->img, 0, 0);
 	return (0);
