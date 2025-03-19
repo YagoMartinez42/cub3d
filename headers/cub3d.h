@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:32 by samartin          #+#    #+#             */
-/*   Updated: 2025/03/07 21:28:01 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/03/09 16:20:48 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <math.h>
 # include <inttypes.h>
 # include "../libft/include/libft.h"
-# include "error_management.h"
 # include "graphics.h"
 # include "map.h"
 # include "player.h"

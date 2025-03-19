@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:31:39 by bvelasco          #+#    #+#             */
-/*   Updated: 2025/03/19 20:45:41 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/03/19 20:53:13 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,8 @@ int	game_loop(void *c3d)
 		j++;
 	}
 	if (cub3d->player.minimap)
-		img_into_img(*cub3d->mlxgraph.scrnbuff, *cub3d->mlxgraph.minimap->texture, 0, 0);
+		img_into_img(*cub3d->mlxgraph.scrnbuff,
+			*cub3d->mlxgraph.minimap->texture, 0, 0);
 	mlx_put_image_to_window(cub3d->mlxgraph.mlx, cub3d->mlxgraph.win,
 		cub3d->mlxgraph.scrnbuff->img, 0, 0);
 	return (0);

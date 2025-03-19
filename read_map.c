@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 11:23:38 by samartin          #+#    #+#             */
-/*   Updated: 2024/12/05 16:04:27 by samartin         ###   ########.fr       */
+/*   Updated: 2025/03/09 16:07:47 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,17 @@ t_map	*c3d_map_list_to_matrix(t_map *map, t_list *map_as_list)
 	map->map_size[Y] = ft_lstsize(map_as_list);
 	map->map_matrix = malloc(map->map_size[Y] * sizeof(char *));
 	if (!(map->map_matrix))
-		c3d_fatal_errors(1);
+		return (map);
 	i = 0;
 	node = map_as_list;
 	while (i < map->map_size[Y])
 	{
 		map->map_matrix[i] = malloc((map->map_size[X] + 1) * sizeof(char *));
+		if (!(map->map_matrix[i]))
+		{
+			c3d_free2d(map->map_matrix);
+			return (map);
+		}
 		c3d_cpynfill(map->map_matrix[i], node->content.str, map->map_size[X]);
 		i++;
 		node = node->next;
@@ -130,7 +135,7 @@ uint8_t	c3d_read_map(int fd, t_map *map)
 		c3d_set_width(line, map->map_size);
 		node = ft_lstnew_type(STR, (t_content)line);
 		if (!node)
-			c3d_fatal_errors(1);
+			return (1);
 		ft_lstadd_back(&map_as_list, node);
 		line = get_next_line(fd);
 	}

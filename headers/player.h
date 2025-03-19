@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:26 by samartin          #+#    #+#             */
-/*   Updated: 2025/03/19 17:10:21 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/03/19 20:53:01 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_player
 	int		xmov;
 	int		ymov;
 	int		rotate;
+	int		mouse_lock;
 	int8_t	minimap;
 }				t_player;
 
@@ -47,6 +48,7 @@ float		launch_ray(t_player *player, float angle, t_minimap *minimap,
 				t_hitpoint *colpoint);
 int			move(int keycode, void *param);
 int			unmove(int keycode, void *param);
+void		mouse_rotation(void *cub3d);
 int			game_loop(void *c3d);
 int			detect_colision(float y, float x, t_map *map);
 t_player	init_player(int fd, void *mlxptr);

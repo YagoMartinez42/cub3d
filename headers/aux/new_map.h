@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   new_map.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 13:10:40 by samartin          #+#    #+#             */
-/*   Updated: 2024/12/02 15:26:49 by samartin         ###   ########.fr       */
+/*   Updated: 2025/02/28 13:58:00 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ uint8_t	c3d_validate_map(t_map *map);
 uint8_t	c3d_matrix_health_3(char **matrix);
 uint8_t	c3d_clear_header(char **header);
 uint8_t	c3d_free2d(char **array_of_str);
-uint8_t	c3d_free2d_size(char **matrix, int size);
 void	c3d_cpynfill(char *dest, char *src, size_t full_l);
 float	c3d_get_player_pos(char **map, size_t w, size_t h, float *player_pos);
 
