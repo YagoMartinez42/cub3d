@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:26 by samartin          #+#    #+#             */
-/*   Updated: 2025/02/12 12:35:08 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/03/19 17:10:21 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #  define FOV 60.0f
 # endif
 # ifndef VEL
-#  define VEL 5.0f
+#  define VEL 5
 # endif
 
 /**
