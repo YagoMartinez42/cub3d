@@ -25,7 +25,7 @@ void	game_clear(t_cub3d g)
 
 	i = -1;
 	while (++i < 4)
-		if (g.player.map.walls[i].img)
+		if (g.player.map.walls[i] && g.player.map.walls[i].img)
 			mlx_destroy_image(g.mlxgraph.mlx, g.player.map.walls[i].img);
 	if (g.mlxgraph.minimap && g.mlxgraph.minimap->texture
 		&& g.mlxgraph.minimap->texture->img)
