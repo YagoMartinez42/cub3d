@@ -17,6 +17,7 @@ t_player	init_player(int fd, void *mlxptr)
 {
 	t_player	player;
 
+	ft_bzero(&player, sizeof(tplayer));
 	player.map = new_map(fd, mlxptr);
 	if (!(player.map.map_matrix))
 		return (player);
