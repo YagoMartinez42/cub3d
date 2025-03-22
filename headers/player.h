@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:26 by samartin          #+#    #+#             */
-/*   Updated: 2025/02/28 14:00:41 by samartin         ###   ########.fr       */
+/*   Updated: 2025/03/19 20:53:01 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #  define FOV 60.0f
 # endif
 # ifndef VEL
-#  define VEL 5.0f
+#  define VEL 5
 # endif
 
 /**
