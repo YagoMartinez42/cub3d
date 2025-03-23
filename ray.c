@@ -29,24 +29,6 @@ static float	c_dir(float trires)
 		return (1);
 	return (-1);
 }
-/*
-static float	calc_dist(float cord, float dir)
-{
-	const int	grid_cord = (int) cord;
-	const float	grid_pos = cord - grid_cord;
-
-	if (dir >= 0)
-	{
-		return ((grid_cord + 1) - cord);
-	}
-	else
-	{
-		if (grid_pos == 0)
-			return (1.0f);
-		return (grid_pos);
-	}
-}
-	*/
 
 static void	dda(float *crds, t_map *map, t_minimap *m_map, t_hitpoint *ht)
 {
