@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:43:08 by samartin          #+#    #+#             */
-/*   Updated: 2025/03/09 13:42:40 by samartin         ###   ########.fr       */
+/*   Updated: 2025/03/24 13:58:12 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ t_player	init_player(int fd, void *mlxptr)
 {
 	t_player	player;
 
-	ft_bzero(&player, sizeof(tplayer));
 	player.map = new_map(fd, mlxptr);
 	if (!(player.map.map_matrix))
 		return (player);
