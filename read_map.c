@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 11:23:38 by samartin          #+#    #+#             */
-/*   Updated: 2025/03/09 16:07:47 by samartin         ###   ########.fr       */
+/*   Updated: 2025/03/23 18:50:16 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_map	*c3d_map_list_to_matrix(t_map *map, t_list *map_as_list)
 		map->map_matrix[i] = malloc((map->map_size[X] + 1) * sizeof(char *));
 		if (!(map->map_matrix[i]))
 		{
-			c3d_free2d(map->map_matrix);
+			ft_free_ptr_array(map->map_matrix);
 			return (map);
 		}
 		c3d_cpynfill(map->map_matrix[i], node->content.str, map->map_size[X]);

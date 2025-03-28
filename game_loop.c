@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:31:39 by bvelasco          #+#    #+#             */
-/*   Updated: 2025/03/19 20:53:13 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/03/23 18:39:03 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int	game_loop(void *c3d)
 	if (sbf == -1)
 		return (1);
 	move_player(&cub3d->player, sbf);
+	mouse_rotation(cub3d);
 	j = 0;
 	dda_data[0] = ((FOV) / 2);
 	print_minimap(&cub3d->player.map, cub3d->mlxgraph.minimap);

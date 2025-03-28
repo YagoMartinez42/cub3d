@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:18:21 by bvelasco          #+#    #+#             */
-/*   Updated: 2025/03/09 16:23:41 by samartin         ###   ########.fr       */
+/*   Updated: 2025/03/24 13:57:58 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,28 +50,22 @@ void	game_clear(t_cub3d g)
 t_mlxgrph	init_graphics(void)
 {
 	t_mlxgrph	result;
-	t_mlx		*mlx;
-	t_mlxwin	*win;
-	t_texture	*scrnbuff;
-	void		*img;
 
-	result.mlx = NULL;
-	mlx = mlx_init();
-	if (!mlx)
+	ft_bzero(&result, sizeof(t_mlxgrph));
+	result.mlx = mlx_init();
+	if (!result.mlx)
 		return (result);
-	win = mlx_new_window(mlx, WINW, WINH, "Cube3d");
-	img = mlx_new_image(mlx, WINW, WINH);
-	scrnbuff = malloc(sizeof(t_texture));
-	if (!scrnbuff)
+	result.win = mlx_new_window(result.mlx, WINW, WINH, "Cube3d");
+	result.scrnbuff = malloc(sizeof(t_texture));
+	if (!result.scrnbuff)
 		return (result);
-	scrnbuff->img = img;
-	scrnbuff->addr = (int *)mlx_get_data_addr(img, &scrnbuff->bits_per_pixel,
-			&scrnbuff->line_length, &scrnbuff->endian);
-	scrnbuff->wd = WINW;
-	scrnbuff->ht = WINH;
-	result.mlx = mlx;
-	result.win = win;
-	result.scrnbuff = scrnbuff;
+	result.scrnbuff->img = mlx_new_image(result.mlx, WINW, WINH);
+	result.scrnbuff->addr = (int *)mlx_get_data_addr(result.scrnbuff->img,
+			&result.scrnbuff->bits_per_pixel, &result.scrnbuff->line_length,
+			&result.scrnbuff->endian);
+	result.scrnbuff->wd = WINW;
+	result.scrnbuff->ht = WINH;
+	result.minimap = NULL;
 	return (result);
 }
 

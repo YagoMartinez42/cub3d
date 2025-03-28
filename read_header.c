@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 11:21:43 by samartin          #+#    #+#             */
-/*   Updated: 2025/02/20 11:26:32 by samartin         ###   ########.fr       */
+/*   Updated: 2025/03/24 15:08:25 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	c3d_atoi_rgb(char **rgbs)
 	int	j;
 
 	num = 0;
-	i = 0;
-	while (i < 3)
+	i = -1;
+	while (++i < 3)
 	{
 		j = 0;
 		dig = 0;
@@ -40,11 +40,11 @@ int	c3d_atoi_rgb(char **rgbs)
 			dig = (dig * 10) + (rgbs[i][j] - '0');
 			j++;
 		}
-		if (dig >= 0 && dig <= 255)
+		if (dig >= 0 && dig <= 255 && (ft_isspace(rgbs[i][j])
+			|| rgbs[i][j] == '\0'))
 			num += (dig << (16 - (8 * i)));
 		else
 			return (-1);
-		i++;
 	}
 	return (num);
 }
@@ -142,14 +142,20 @@ static uint8_t	c3d_assign_colors(t_map *map, char **header)
 	if (!c3d_matrix_health_3(rgbs))
 		return (1);
 	map->floor_color = (c3d_atoi_rgb (rgbs));
-	c3d_free2d(rgbs);
+	ft_free_ptr_array(rgbs);
 	rgbs = ft_split(header[5], ',');
 	if (!c3d_matrix_health_3(rgbs))
+	{
+		ft_free_ptr_array(rgbs);
 		return (1);
+	}
 	map->ceil_color = (c3d_atoi_rgb (rgbs));
 	if (map->ceil_color == -1 || map->floor_color == -1)
+	{
+		ft_free_ptr_array(rgbs);
 		return (1);
-	c3d_free2d(rgbs);
+	}
+	ft_free_ptr_array(rgbs);
 	return (0);
 }
 
