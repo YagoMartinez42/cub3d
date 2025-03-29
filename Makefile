@@ -21,6 +21,7 @@ SRC		:= main.c \
 			player_new.c\
 			player_init_utils.c\
 			validate_map.c\
+			dda.c\
 			minimap.c
 
 SUBMODULES := .submodules
