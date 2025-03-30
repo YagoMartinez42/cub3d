@@ -6,34 +6,11 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 11:25:53 by samartin          #+#    #+#             */
-/*   Updated: 2025/03/09 14:37:56 by samartin         ###   ########.fr       */
+/*   Updated: 2025/03/24 13:40:48 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/cub3d.h"
-
-/**
- * Frees memory allocated for a NULL-terminated array of strings.
- * 
- * @param array_of_str A pointer to an array of strings (char* pointers).
- * 
- * @return 1 if the pointer was NULL, 0 if any free worked.
- */
-uint8_t	c3d_free2d(char **array_of_str)
-{
-	int	i;
-
-	i = 0;
-	if (!array_of_str)
-		return (1);
-	while (array_of_str[i])
-	{
-		free(array_of_str[i]);
-		i++;
-	}
-	free(array_of_str);
-	return (0);
-}
 
 /**
  * Frees the six header strings used to build the map, returns 255 to be used
@@ -116,6 +93,15 @@ uint8_t	c3d_matrix_health_3(char **matrix)
 	return (0);
 }
 
+/**
+ * Copies the content of a string from the map and fills with whitespace all
+ *  the remaining size until reaching the actual width of the map's matrix.
+ * 
+ * @param dest The destination string where to copy the map line to.
+ * @param src The original map line that can be shorter than the map width.
+ * @param full_l The actual full length of a map line.
+ * 
+ */
 void	c3d_cpynfill(char *dest, char *src, size_t full_l)
 {
 	size_t	pos;

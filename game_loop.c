@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:31:39 by bvelasco          #+#    #+#             */
-/*   Updated: 2025/03/25 08:10:21 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/03/30 16:32:24 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ int	game_loop(void *c3d)
 	if (sbf == -1)
 		return (1);
 	move_player(&cub3d->player, sbf);
+	mouse_rotation(cub3d);
 	j = 0;
 	dda_data[0] = ((FOV) / 2);
 	print_minimap(&cub3d->player.map, cub3d->mlxgraph.minimap);
