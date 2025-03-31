@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:18:21 by bvelasco          #+#    #+#             */
-/*   Updated: 2025/03/24 13:57:58 by samartin         ###   ########.fr       */
+/*   Updated: 2025/03/31 13:49:07 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ t_cub3d	initializer(int fd)
 		|| !result.mlxgraph.scrnbuff)
 	{
 		write(2, "Could not init MiniLibX\n", 24);
+		result.is_valid = 3;
 		return (result);
 	}
 	result.player = init_player(fd, result.mlxgraph.mlx);
