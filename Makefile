@@ -23,23 +23,17 @@ SRC		:= main.c \
 			validate_map.c\
 			minimap.c
 
-SUBMODULES := .submodules
-
 OBJ		:= ${SRC:.c=.o}
 
 all: ${NAME}
 
-${NAME}: $(SUBMODULES) ${MLXLIB} ${LIBFT} $(OBJ)
-	${CC} $(CFLAGS) -o $(NAME) ${OBJ} ${CFLAGS} ${LDFLAGS} ${MLXFLG} ${LIBFT_FLAG} 
+${NAME}: ${MLXLIB} ${LIBFT} $(OBJ)
+	${CC} $(CFLAGS) -o $(NAME) ${OBJ} ${CFLAGS} ${LDFLAGS} ${MLXFLG} ${LIBFT_FLAG}
 
-$(SUBMODULES):
-	git submodule init && git submodule update
-	touch .submodules
-
-${MLXLIB}:	$(SUBMODULES)
+${MLXLIB}:
 	make -C ${MLXDIR}
 
-${LIBFT}:	$(SUBMODULES)
+${LIBFT}:
 	make -C ${LFTDIR}
 
 clean:
@@ -54,7 +48,7 @@ fclean: clean
 
 re: fclean all
 
-debug: fclean $(SUBMODULES) $(MLXLIB) $(LIBFT)
+debug: fclean $(MLXLIB) $(LIBFT)
 	@CFLAGS="$(CFLAGS) -g3" make -e all
 
 .PHONY:	all clean fclean re bonus
