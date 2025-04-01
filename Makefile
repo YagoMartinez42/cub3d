@@ -22,6 +22,7 @@ SRC		:= main.c \
 			player_init_utils.c\
 			validate_map.c\
 			dda.c\
+			dda_remains.c\
 			minimap.c
 
 SUBMODULES := .submodules

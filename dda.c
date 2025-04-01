@@ -6,11 +6,11 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 16:12:09 by bvelasco          #+#    #+#             */
-/*   Updated: 2025/03/29 16:12:12 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/04/01 10:17:44 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/cub3d.h"
+#include "headers/dda.h"
 
 int	detect_colision(float y, float x, t_map *map)
 {
@@ -41,22 +41,9 @@ void	dda(float *crds, t_map *map, t_minimap *m_map, t_hitpoint *ht)
 	cords_int[X] = crds[X];
 	cords_int[Y] = crds[Y];
 	ht->hit_dir = 3;
-	if (dir[X] > 0)
-		remains[X] = crds[X] - cords_int[X];
-	else
-		remains[X] = 1 - (crds[X] - cords_int[X]);
-	if (dir[Y] > 0)
-		remains[Y] = crds[Y] - cords_int[Y];
-	else
-		remains[Y] = 1 - (crds[Y] - cords_int[Y]);
+	get_remains((float *)dir,remains,crds,cords_int);
 	while (!detect_colision(cords_int[Y] / m_map->size, cords_int[X] / m_map->size, map))
 	{
-		/*
-		MAP DEBUG INFO:
-			Blue: Hit in X
-			Green: Hit in Y
-			Red: Invalid hit
-		*/
 		ft_image_pixel_put(m_map->texture, cords_int[X], cords_int[Y], ~map->floor_color);
 		dists[X] = 1 - remains[X];
 		dists[Y] = 1 - remains[Y];
