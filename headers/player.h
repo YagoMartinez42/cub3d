@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:26 by samartin          #+#    #+#             */
-/*   Updated: 2025/03/19 20:53:01 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/03/25 12:54:24 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_player
 	int8_t	minimap;
 }				t_player;
 
+void		dda(float *crds, t_map *map, t_minimap *m_map, t_hitpoint *ht);
 float		launch_ray(t_player *player, float angle, t_minimap *minimap,
 				t_hitpoint *colpoint);
 int			move(int keycode, void *param);
