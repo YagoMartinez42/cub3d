@@ -6,7 +6,7 @@
 /*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:04:26 by samartin          #+#    #+#             */
-/*   Updated: 2025/03/24 13:40:41 by samartin         ###   ########.fr       */
+/*   Updated: 2025/04/02 14:26:38 by samartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ t_map	new_map(int map_fd, t_mlx *mlx)
 	else if (c3d_read_map(map_fd, &map))
 	{
 		if (map.map_matrix)
-			c3d_free2d_size(map.map_matrix, map.map_size[0]);
+			c3d_free2d_size(map.map_matrix, map.map_size[Y]);
 		map.map_matrix = NULL;
 	}
 	else if (c3d_validate_map(&map))
 	{
 		if (map.map_matrix)
-			c3d_free2d_size(map.map_matrix, map.map_size[0]);
+			c3d_free2d_size(map.map_matrix, map.map_size[Y]);
 		map.map_matrix = NULL;
 	}
 	return (map);
