@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:32 by samartin          #+#    #+#             */
-/*   Updated: 2025/04/01 10:08:54 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/04/02 17:25:57 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@
 # include "player.h"
 # include "dda.h"
 # ifndef WINW
-#  define WINW 800
+#  define WINW 1600
 # endif
 # ifndef WINH 
-#  define WINH 600
+#  define WINH 1200
 # endif
 # ifndef BPP
 #  define BPP 4

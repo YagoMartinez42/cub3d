@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   user_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:35:07 by bvelasco          #+#    #+#             */
-/*   Updated: 2025/03/09 16:31:01 by samartin         ###   ########.fr       */
+/*   Updated: 2025/04/02 17:24:58 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/cub3d.h"
+
+static void	toggle_minimap(void *c3d)
+{
+	t_cub3d	*cub3d;
+
+	cub3d = c3d;
+	if (cub3d->player.minimap)
+		cub3d->player.minimap = 0;
+	else
+		cub3d->player.minimap = 1;
+}
 
 static void	mouse_abling(void *c3d)
 {
@@ -37,9 +48,11 @@ static void	mouse_abling(void *c3d)
 
 int	move(int keycode, void *param)
 {
+	t_cub3d		*c3d;
 	t_player	*player;
 
-	player = &((t_cub3d *)param)->player;
+	c3d = param;
+	player = &c3d->player;
 	if (keycode == 65361 && player->mouse_lock == 0)
 		player->rotate = -1;
 	if (keycode == 65363 && player->mouse_lock == 0)
@@ -52,15 +65,12 @@ int	move(int keycode, void *param)
 		player->ymov = 1;
 	if (keycode == 119)
 		player->ymov = -1;
-	if (keycode == 109)
-	{
-		if (player->minimap)
-			player->minimap = 0;
-		else
-			player->minimap = 1;
-	}
 	if (keycode == 44)
 		mouse_abling(param);
+	if (keycode == 65307)
+		mlx_loop_end(c3d->mlxgraph.mlx);
+	if (keycode == 109)
+		toggle_minimap(param);
 	return (0);
 }
 

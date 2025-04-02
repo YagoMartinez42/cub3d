@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:18:21 by bvelasco          #+#    #+#             */
-/*   Updated: 2025/03/31 13:49:07 by samartin         ###   ########.fr       */
+/*   Updated: 2025/04/02 17:25:48 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/cub3d.h"
 
-int	exit_game(void *mlx)
+static int	exit_game(void *mlx)
 {
 	(void) mlx;
 	mlx_loop_end(mlx);
 	return (26);
 }
 
-void	game_clear(t_cub3d g)
+static void	game_clear(t_cub3d g)
 {
 	int	i;
 
@@ -47,7 +47,7 @@ void	game_clear(t_cub3d g)
 	c3d_free2d_size(g.player.map.map_matrix, g.player.map.map_size[Y]);
 }
 
-t_mlxgrph	init_graphics(void)
+static t_mlxgrph	init_graphics(void)
 {
 	t_mlxgrph	result;
 
@@ -69,7 +69,7 @@ t_mlxgrph	init_graphics(void)
 	return (result);
 }
 
-t_cub3d	initializer(int fd)
+static t_cub3d	initializer(int fd)
 {
 	t_cub3d	result;
 
