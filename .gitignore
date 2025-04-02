@@ -29,6 +29,6 @@ tags
 *.out
 *.a
 # Executable
-cub3D:wq
+cub3D
 # Submodule
 .submodules
