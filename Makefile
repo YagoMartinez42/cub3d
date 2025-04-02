@@ -21,6 +21,8 @@ SRC		:= main.c \
 			player_new.c\
 			player_init_utils.c\
 			validate_map.c\
+			dda.c\
+			dda_remains.c\
 			minimap.c
 
 OBJ		:= ${SRC:.c=.o}

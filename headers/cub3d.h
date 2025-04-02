@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:24:32 by samartin          #+#    #+#             */
-/*   Updated: 2025/03/09 16:20:48 by samartin         ###   ########.fr       */
+/*   Updated: 2025/04/01 10:08:54 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "graphics.h"
 # include "map.h"
 # include "player.h"
+# include "dda.h"
 # ifndef WINW
 #  define WINW 800
 # endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samartin <samartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:31:39 by bvelasco          #+#    #+#             */
-/*   Updated: 2025/03/23 18:39:03 by samartin         ###   ########.fr       */
+/*   Updated: 2025/03/30 16:32:24 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,15 @@ static float	seconds_before_this_frame(void)
 	return (result);
 }
 
+static void	render_next_frame(t_cub3d *cub3d)
+{
+	if (cub3d->player.minimap)
+		img_into_img(*cub3d->mlxgraph.scrnbuff,
+			*cub3d->mlxgraph.minimap->texture, 0, 0);
+	mlx_put_image_to_window(cub3d->mlxgraph.mlx, cub3d->mlxgraph.win,
+		cub3d->mlxgraph.scrnbuff->img, 0, 0);
+}
+
 int	game_loop(void *c3d)
 {
 	t_cub3d		*cub3d;
@@ -107,10 +116,6 @@ int	game_loop(void *c3d)
 		print_column(c3d, roundf(WINH / dda_data[1]), j, col);
 		j++;
 	}
-	if (cub3d->player.minimap)
-		img_into_img(*cub3d->mlxgraph.scrnbuff,
-			*cub3d->mlxgraph.minimap->texture, 0, 0);
-	mlx_put_image_to_window(cub3d->mlxgraph.mlx, cub3d->mlxgraph.win,
-		cub3d->mlxgraph.scrnbuff->img, 0, 0);
+	render_next_frame(cub3d);
 	return (0);
 }
