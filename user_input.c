@@ -6,7 +6,7 @@
 /*   By: bvelasco <bvelasco@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:35:07 by bvelasco          #+#    #+#             */
-/*   Updated: 2025/04/02 17:24:58 by bvelasco         ###   ########.fr       */
+/*   Updated: 2025/04/02 17:42:21 by bvelasco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ int	move(int keycode, void *param)
 	c3d = param;
 	player = &c3d->player;
 	if (keycode == 65361 && player->mouse_lock == 0)
-		player->rotate = -1;
+		player->rotate -= 1;
 	if (keycode == 65363 && player->mouse_lock == 0)
-		player->rotate = +1;
+		player->rotate += 1;
 	if (keycode == 100)
 		player->xmov = 1;
 	if (keycode == 97)
@@ -80,9 +80,9 @@ int	unmove(int keycode, void *param)
 
 	player = param;
 	if (keycode == 65361)
-		player->rotate = 0;
+		player->rotate += 1;
 	if (keycode == 65363)
-		player->rotate = 0;
+		player->rotate -= 1;
 	if (keycode == 100)
 		player->xmov = 0;
 	if (keycode == 97)
